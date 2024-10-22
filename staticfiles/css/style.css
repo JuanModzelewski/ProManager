@@ -1,8 +1,9 @@
-.logo {
+.brand {
     font-family: Exo 2, sans-serif;
     font-size: 1.75rem;
     font-weight:500;
     color: #4A4A4F;
+    padding-right: 3rem;
 }
 
 .pro-color {
@@ -11,6 +12,21 @@
 
 .thin {
     font-weight: 300;
+}
+
+.nav-item {
+    font-size: 1.25rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.nav-link:hover {
+    color: #3a037e;
+}
+
+.active {
+    font-weight: 500;
+    color: #3a037e;
 }
 
 .light-bg {
@@ -23,4 +39,10 @@
 
 .main-bg {
     background-color: #F9FAFC;
+}
+
+.navbar {
+    height: 5rem;
+    border-bottom: 3px solid #3a037e;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.15);
 }

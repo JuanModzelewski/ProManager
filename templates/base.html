@@ -2,6 +2,7 @@
 
 {% url 'home' as home_url %}
 {% url 'project' as project_url %}
+{% url 'create_project' as create_project_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -12,6 +13,9 @@
 <head>
     <title>ProManager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
 
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,6 +31,9 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Custom JS -->
+    <script src="{% static 'js/script.js' %}"></script>
 
 </head>
 
@@ -98,6 +105,12 @@
 
     {% block extras %}
     {% endblock %}
+
+    <script>
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        });
+    </script>
 
 </body>
 

@@ -1,6 +1,8 @@
 {% extends 'base.html' %} 
-{% block content %}
 {% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
 
 <!-- Side Bar navigation -->
 <!--
@@ -13,30 +15,50 @@
 </div>
 -->
 
+
+
 <div class="container">
-    <div class="d-flex flex-column align-items-center">
-        {% for member in object_list %}
-        <div class="card mb-3">
-            <div class="card-header">
-                Created By: {{ member.project.author }}
-            </div>
-            <div class="card-body d-flex flex-row justify-content-evenly mb-3">
-                <div class="p-2">
-                    <a href="">
-                    <h5 class="card-title">{{ member.project }}</h5>
-                    </a>
-                    <p class="card-text">{{ member.project.created_on}}</p>
-                </div>
-                <div class="p-2 d-flex flex-column">
-                    {% if user.is_authenticated and member.project.author == user %}
-                    <button class="btn btn-secondary mb-2" data-project_id="{{ project.id }}">Edit</button>
-                    <button class="btn btn-danger mb-2" data-project_id="{{ project.id }}">Delete</button>
-                    {% endif %}
-                </div>
-            </div>
+  <div class="d-flex flex-column align-items-start">
+    <button type="button" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-primary mb-3"
+      hx-get="{% url 'create_project' %}" hx-target="#dialog">
+      Create Project
+    </button>
+    {% for project in object_list %}
+    <div class="card mb-3">
+      <div class="card-header">
+        Created By: {{ project.author }}
+      </div>
+      <div class="card-body d-flex flex-row justify-content-evenly mb-3">
+        <div class="p-2">
+          <a href="">
+            <h5 class="card-title">{{ project.title }}</h5>
+          </a>
+          <p class="card-text">{{ project.created_on }}</p>
         </div>
-        {% endfor %}
+        <div class="p-2 d-flex flex-column">
+          {% if user.is_authenticated and project.author == user %}
+          <button class="btn btn-secondary mb-2" data-project_id="{{ project.id }}">Edit</button>
+          <button class="btn btn-danger mb-2" data-project_id="{{ project.id }}">Delete</button>
+          {% endif %}
+        </div>
+      </div>
     </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="CreateProjectModalLabel">Create New Project</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="dialog" class="modal-body" hx-target="this">
+      </div>
+    </div>
+  </div>
 </div>
 
 

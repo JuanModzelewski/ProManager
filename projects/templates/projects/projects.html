@@ -1,0 +1,44 @@
+{% extends 'base.html' %} 
+{% block content %}
+{% load static %}
+
+<!-- Side Bar navigation -->
+<!--
+<div class="sidebar">
+    <a href="#projects">Projects</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#board">Board</a>
+    <a href="#task-manager">Task Manager</a>
+    <a href="#teams">Teams</a>
+</div>
+-->
+
+<div class="container">
+    <div class="d-flex flex-column align-items-center">
+        {% for member in object_list %}
+        <div class="card mb-3">
+            <div class="card-header">
+                Created By: {{ member.project.author }}
+            </div>
+            <div class="card-body d-flex flex-row justify-content-evenly mb-3">
+                <div class="p-2">
+                    <a href="">
+                    <h5 class="card-title">{{ member.project }}</h5>
+                    </a>
+                    <p class="card-text">{{ member.project.created_on}}</p>
+                </div>
+                <div class="p-2 d-flex flex-column">
+                    {% if user.is_authenticated and member.project.author == user %}
+                    <button class="btn btn-secondary mb-2" data-project_id="{{ project.id }}">Edit</button>
+                    <button class="btn btn-danger mb-2" data-project_id="{{ project.id }}">Delete</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock content %}

@@ -5,9 +5,9 @@ from .models import ProjectTeam
 # Register your models here.
 
 class ProjectTeamAdmin(SummernoteModelAdmin):
-    list_display = ('team_title', 'project')
+    list_display = ('title', 'project')
     list_filter = ('project',)
-    search_fields = ['team_members__username', 'project__title']
+    search_fields = ['project', 'members']
     list_per_page = 25
 
 

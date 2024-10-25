@@ -52,10 +52,11 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 3rem;
 }
+
 .card {
-    width: 450px;
+    width: 500px;
+    height: 160px;
 }
 
 

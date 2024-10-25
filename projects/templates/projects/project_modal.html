@@ -3,9 +3,13 @@
 
 <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>
   {% csrf_token %}
-  {{ form | crispy }}
+  {{ project_form | crispy }}
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     <button type="submit" class="btn btn-primary">Create Project</button>
   </div>
 </form>
+
+{% block extras %}
+<script src="{% static 'js/projects.js' %}"></script>
+{% endblock extras %}

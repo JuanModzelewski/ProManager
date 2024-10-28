@@ -21,12 +21,12 @@
 }
 
 .nav-link:hover {
-    color: #3a037e;
+    color: #544461;
 }
 
 .active {
     font-weight: 500;
-    color: #3a037e;
+    color: #544461;
 }
 
 .light-bg {
@@ -43,9 +43,22 @@
 
 .navbar {
     height: 5rem;
-    border-bottom: 3px solid #3a037e;
+    border-bottom: 3px solid #544461;
     box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.15);
 }
+
+.login-notification {
+    right: 5%;
+    position: absolute;
+}
+
+.message-notification {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 1.5rem;
+}
+
 
 .container {
     display: flex;
@@ -59,6 +72,17 @@
     height: 160px;
 }
 
+.project-details {
+    margin-left: 400px;
+    padding-top: 3rem;
+    padding-right: 3rem;
+}
+
+
+
+.footer {
+    z-index: 1;
+}
 
 
 /* The side navigation menu */
@@ -79,6 +103,7 @@
     padding: 1rem;
     padding-left: 2rem;
     text-decoration: none;
+    border-bottom: 1px solid #54446138;
 }
 
 /* Active/current link */
@@ -124,3 +149,4 @@ div.content {
         float: none;
     }
 }
+

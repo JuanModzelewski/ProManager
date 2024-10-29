@@ -128,6 +128,72 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
+    <!-- Bootstrap Icons JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.js"></script>
+
+
+    <!-- Modal for creating new project and editing existing project -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div id="projectDialog" class="modal-body" hx-target="this">
+                    <!-- Modal content goes here inserted by HTMX from template project_modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for creating teams and editing existing teams -->
+    <div class="modal fade" id="projectTeamsModal" tabindex="-1" aria-labelledby="projectTeamsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div id="teamDialog" class="modal-body" hx-target="this">
+                    <!-- Modal content goes here inserted by HTMX from template project_modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Delete confirmation modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" hx-target="this">
+        <div class="modal-dialog" class="modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5" id="deleteModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="deleteModalBody" class="modal-body"></div>
+                <!-- Delete message received from projects.js -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a id="deleteConfirm" href="#" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Alert Modal -->
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog" class="modal-sm">
+            <div class="modal-content">
+                <div id="alertDialog" class="modal-body" hx-target="this"></div>
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5" id="alertModalLabel">Delete user?</h5>
+                    <button type="button" class="btn-close alert-modal-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    No members have been selected, please select at least one member.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary alert-modal-close" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {% block extras %}
     {% endblock %}

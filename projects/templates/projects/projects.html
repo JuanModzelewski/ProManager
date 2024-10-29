@@ -7,7 +7,7 @@
 <div class="container">
   <div class="d-flex flex-column align-items-start">
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#projectModal"
-      hx-get="{% url 'create_project' %}" hx-target="#dialog">
+      hx-get="{% url 'create_project' %}" hx-target="#projectDialog">
       <i class="bi bi-folder-plus"></i>
       Create Project
     </button>
@@ -26,12 +26,12 @@
         <div class="d-flex flex-column align-self-end">
           {% if user.is_authenticated and project.author == user %}
           <button type="button" class="btn btn-secondary mb-2" data-project_id="{{ project.id }}" data-bs-toggle="modal"
-            data-bs-target="#projectModal" hx-get="{% url 'edit_project' project.id %}" hx-target="#dialog">
+            data-bs-target="#projectModal" hx-get="{% url 'edit_project' project.id %}" hx-target="#projectDialog">
             <i class="bi bi-pencil-square"></i>
             Edit
           </button>
           <button onclick="deleteProject(event)" type="button" class="btn btn-danger mb-2"
-            data-project_id="{{ project.id }}" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            data-project_id="{{ project.id }}" data-project_title="{{ project.title }}" data-bs-toggle="modal" data-bs-target="#deleteModal">
             <i class="bi bi-trash"></i>
             Delete
           </button>
@@ -40,38 +40,6 @@
       </div>
     </div>
     {% endfor %}
-  </div>
-</div>
-
-<!-- Modal for creating new project and editing existing project -->
-<div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div id="dialog" class="modal-body" hx-target="this">
-        <!-- Modal content goes here inserted by HTMX from template project_modal -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Delete confirmation modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title fs-5" id="deleteModalLabel">Delete Project?</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div id="deleteDialog" class="modal-body">
-        Are you sure you want to delete this project?
-        <strong>{{ project.title }}</strong>
-        This action cannot be undone.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
-      </div>
-    </div>
   </div>
 </div>
 

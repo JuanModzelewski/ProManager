@@ -5,7 +5,6 @@
 {% block content %}
 
 <!-- Project content -->
-
 <div class="project-details">
     <div class="project-description">
         <h3>{{ project.title }}</h3>
@@ -13,23 +12,11 @@
         <p>{{ project.description | linebreaks | safe }}</p>
         {% if user.is_authenticated and project.author == user %}
         <button type="button" class="btn btn-secondary mb-2" data-project_id="{{ project.id }}" data-bs-toggle="modal"
-            data-bs-target="#projectModal" hx-get="{% url 'edit_project' project.id %}" hx-target="#dialog">
+            data-bs-target="#projectModal" hx-get="{% url 'edit_project' project.id %}" hx-target="#projectDialog">
             <i class="bi bi-pencil-square"></i>
             Edit
         </button>
         {% endif %}
-    </div>
-</div>
-
-
-<!-- Modal for creating new project and editing existing project -->
-<div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div id="dialog" class="modal-body" hx-target="this">
-                <!-- Modal content goes here inserted by HTMX from template project_modal -->
-            </div>
-        </div>
     </div>
 </div>
 

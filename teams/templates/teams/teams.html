@@ -7,7 +7,7 @@
 {% block content %}
 <div class="project-details">
   <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#projectTeamsModal"
-      hx-get="{% url 'create_team' project.id %}" hx-target="#dialog">
+      hx-get="{% url 'create_team' project.id %}" hx-target="#teamDialog">
       <i class="bi bi-person-add"></i>
       Create Team
     </button>
@@ -16,86 +16,31 @@
     {% for team in project_teams %}
     <div class="card h-auto m-3 p-3" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title">{{ team.title }}</h5>
+          <h5 class="card-title align-self-center mb-0">{{ team.title }}</h5>
         <hr>
-        <ul>
+        <ul class="list-group">
           {% for member in team.members.all %}
-          <li>{{ member }}</li>
+          <li class="list-group-item">{{ member }}</li>
           {% endfor %}
         </ul>
         <hr>
-        <button type="button" class="btn btn-secondary mt-2" data-bs-toggle="modal" data-bs-target="#projectTeamsModal"
-          hx-get="{% url 'edit_team' project.id team.id %}" hx-target="#dialog">
-          <i class="bi bi-person-add"></i>
-          Edit Team
-        </button>
+        <div class="d-flex flex-row flex-wrap align-items-center">
+          <button type="button" class="btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#projectTeamsModal"
+            hx-get="{% url 'edit_team' project.id team.id %}" hx-target="#teamDialog">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button onclick="deleteTeam(event)" type="button" class="btn btn-danger align-self-end"
+            data-team_id="{{ team.id }}" data-project_id="{{ project.id }}" data-team_title="{{ team.title }}"
+            data-bs-toggle="modal" data-bs-target="#deleteModal">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
       </div>
     </div>
     {% endfor %}
     {% else %}
     <h5 class="card-title">No teams in this project</h5>
     {% endif %}
-  </div>
-</div>
-
-
-<!-- Modal for creating teams and editing existing teams -->
-<div class="modal fade" id="projectTeamsModal" tabindex="-1" aria-labelledby="projectTeamsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div id="dialog" class="modal-body" hx-target="this">
-          <!-- Modal content goes here inserted by HTMX from template project_modal -->
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!-- Delete confirmation modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog" class="modal-sm">
-    <div class="modal-content">
-      <div id="deleteDialog" class="modal-body" hx-target="this"></div>
-      <div class="modal-header">
-        <h5 class="modal-title fs-5" id="deleteModalLabel">Delete user?</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete this user?
-        <strong>{{ team.member.username }}</strong>
-        This action cannot be undone.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a id="deleteMemberConfirm" 
-          href="#" 
-          class="btn btn-danger" 
-          hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
-          hx-push-url="true" 
-          hx-swap="outerHTML" 
-          hx-target="#dialog">
-          <i class="bi bi-trash"></i> Delete
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Alert Modal -->
-<div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
-  <div class="modal-dialog" class="modal-sm">
-    <div class="modal-content">
-      <div id="alertDialog" class="modal-body" hx-target="this"></div>
-      <div class="modal-header">
-        <h5 class="modal-title fs-5" id="alertModalLabel">Delete user?</h5>
-        <button type="button" class="btn-close alert-modal-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        No members have been selected, please select at least one member.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary alert-modal-close" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
   </div>
 </div>
 

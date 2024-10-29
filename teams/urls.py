@@ -8,6 +8,7 @@ urlpatterns = [
     path("team_modal/<int:project_id>", views.create_project_team, name="create_team"),
     path("team_modal/<int:project_id>/<int:team_id>", views.edit_project_team, name="edit_team"),
     path("delete_members/<int:project_id>/<int:team_id>/<str:member_ids>", views.delete_team_members, name="delete_members"),
+    path("delete_team/<int:project_id>/<int:team_id>", views.delete_team, name="delete_team"),
     
 ]
 

@@ -62,6 +62,13 @@ def delete_team_members(request, project_id, team_id, member_ids):
     team.members.remove(*members)
     messages.success(request, f"Members removed from team '{team.title}'.")
     return HttpResponseRedirect(reverse('view_project_teams', kwargs={'project_id': project.id}))
+
+def delete_team(request, project_id, team_id):
+    project = get_object_or_404(Project, pk=project_id)
+    team = get_object_or_404(ProjectTeam, pk=team_id)
+    team.delete()
+    messages.success(request, f"Team '{team.title}' deleted.")
+    return HttpResponseRedirect(reverse('view_project_teams', kwargs={'project_id': project.id}))
     
     
 

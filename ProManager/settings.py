@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'home',
     'projects',
     'teams',
+    'epics',
+    'tasks',
 ]
 
 SITE_ID = 1

@@ -1,0 +1,23 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>
+    <div class="modal-header">
+        <h1 class="modal-title fs-5" id="epicModalLabel">
+            Create Epic
+        </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    {{ epic_form | crispy }}
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" id="create-epic-form-button" class="btn btn-primary">
+            Create Epic
+        </button>
+    </div>
+</form>
+
+{% block extras %}
+<script src="{% static 'js/projects.js' %}"></script>
+{% endblock extras %}

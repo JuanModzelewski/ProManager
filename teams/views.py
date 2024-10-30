@@ -38,36 +38,37 @@ def create_project_team(request, project_id):
 
 def edit_project_team(request, project_id, team_id):
     project = get_object_or_404(Project, pk=project_id)
-    team = get_object_or_404(ProjectTeam, pk=team_id)
+    project_teams = get_object_or_404(ProjectTeam, pk=team_id)
 
     if request.method == "POST":
-        team_form = ProjectTeamForm(request.POST, instance=team)
+        team_form = ProjectTeamForm(request.POST, instance=project_teams)
         if team_form.is_valid():
             team_form.save()
             if 'members' in team_form.cleaned_data and team_form.cleaned_data['members']:
-                team.members.set(team_form.cleaned_data['members'])
-            messages.success(request, f"Team '{team.title}' updated.")
+                project_teams.members.set(team_form.cleaned_data['members'])
+            messages.success(request, f"Team '{project_teams.title}' updated.")
             return HttpResponseClientRefresh()
     else:
-        team_form = ProjectTeamForm(instance=team)
+        team_form = ProjectTeamForm(instance=project_teams)
 
-    return render(request, "teams/team_modal.html", {"project": project, "team_form": team_form, "team": team})
+    return render(request, "teams/team_modal.html", {"project": project, "team_form": team_form, "project_teams": project_teams})
 
 
 def delete_team_members(request, project_id, team_id, member_ids):
     project = get_object_or_404(Project, pk=project_id)
-    team = get_object_or_404(ProjectTeam, pk=team_id)
+    project_teams = get_object_or_404(ProjectTeam, pk=team_id)
     member_ids = member_ids.split(',')
     members = User.objects.filter(id__in=member_ids)
-    team.members.remove(*members)
-    messages.success(request, f"Members removed from team '{team.title}'.")
+    project_teams.members.remove(*members)
+    messages.success(request, f"Members removed from team '{project_teams.title}'.")
     return HttpResponseRedirect(reverse('view_project_teams', kwargs={'project_id': project.id}))
+
 
 def delete_team(request, project_id, team_id):
     project = get_object_or_404(Project, pk=project_id)
-    team = get_object_or_404(ProjectTeam, pk=team_id)
-    team.delete()
-    messages.success(request, f"Team '{team.title}' deleted.")
+    project_teams = get_object_or_404(ProjectTeam, pk=team_id)
+    project_teams.delete()
+    messages.success(request, f"Team '{project_teams.title}' deleted.")
     return HttpResponseRedirect(reverse('view_project_teams', kwargs={'project_id': project.id}))
     
     

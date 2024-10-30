@@ -1,0 +1,278 @@
+{% extends 'project_manager.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+<div class="project-details">
+    {% if user.is_authenticated and project.author == user %}
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#epicModal"
+        hx-get="{% url 'create_epic' project.id %}" hx-target="#epicDialog">
+        <i class="bi bi-plus-circle"></i>
+        Create Epic
+    </button>
+    {% endif %}
+
+
+    {% if project_epics %}
+    <div>
+        <canvas id="epicChart"></canvas>
+    </div>
+    {% else %}
+    <p>No epics have been created for this project.</p>
+    {% endif %}
+
+    <div class="mt-4 mb-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Updated On</th>
+                    <th scope="col" width="3%">Edit</th>
+                    <th scope="col" width="3%">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for epic in project_epics %}
+                <tr>
+                    <td class="text-center fs-5"><i class="bi bi-circle-fill epic-color"></i></td>
+                    <td>{{epic.title}}</td>
+                    <td>{{epic.start_date}}</td>
+                    <td>{{epic.end_date}}</td>
+                    <td>{{epic.updated_on}}</td>
+                    <td><button type="button" class="btn btn-secondary me-3 btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#projectTeamsModal" hx-get="" hx-target="#teamDialog">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                    </td>
+                    <td><button onclick="deleteEpic(event)" type="button" class="btn btn-danger btn-sm"
+                            data-epic_id="{{ epic.id }}" data-project_id="{{ project.id }}"
+                            data-epic_title="{{ epic.title }}" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+{% endblock content %}
+
+
+
+{% block extras %}
+<script src="{% static 'js/projects.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Icon colors to identify epics
+        const epicColors = document.getElementsByClassName('epic-color');
+        const colors = [
+            'rgba(255, 26, 104, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(14, 72, 220, 0.2)',
+            'rgba(162, 111, 236, 0.2)',
+            'rgba(159, 4, 131, 0.2)',
+            'rgba(127, 215, 182, 0.2)',
+            'rgba(49, 199, 64, 0.2)',
+            'rgba(147, 2, 45, 0.2)',
+            'rgba(246, 92, 163, 0.2)',
+            'rgba(70, 123, 152, 0.2)',
+            'rgba(13, 28, 117, 0.2)',
+            'rgba(88, 134, 174, 0.2)',
+            'rgba(0, 0, 0, 0.2)'
+        ];
+
+        // Icon border colors to identify epics
+        const borderColors = [
+            'rgba(255, 26, 104, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(14, 72, 220, 1)',
+            'rgba(162, 111, 236, 1)',
+            'rgba(159, 4, 131, 1)',
+            'rgba(127, 215, 182, 1)',
+            'rgba(49, 199, 64, 1)',
+            'rgba(147, 2, 45, 1)',
+            'rgba(246, 92, 163, 1)',
+            'rgba(70, 123, 152, 1)',
+            'rgba(13, 28, 117, 1)',
+            'rgba(88, 134, 174, 1)',
+            'rgba(0, 0, 0, 1)'
+        ];
+
+        // Loop to set color and border color to epic icons
+        for (let i = 0; i < epicColors.length; i++) {
+            epicColors[i].style = "color: " + colors[i % colors.length] + "; -webkit-text-stroke: " + borderColors[i % borderColors.length] + " 1.5px;";
+        }
+
+        // setup 
+        const data = {
+            labels: [
+                {% for epic in project_epics %}
+        '{{ forloop.counter }}',
+            {% endfor %}
+        ],
+        datasets: [{
+            labels: 'Epics',
+            data: [
+                {% for epic in project_epics %}
+                { x: [new Date('{{ epic.start_date|date:"Y-m-d" }}'), new Date('{{ epic.end_date|date:"Y-m-d" }}')], y: 1 },
+        {% endfor %}
+    ],
+        backgroundColor: [
+        'rgba(255, 26, 104, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(14, 72, 220, 0.2)',
+        'rgba(162, 111, 236, 0.2)',
+        'rgba(159, 4, 131, 0.2)',
+        'rgba(127, 215, 182, 0.2)',
+        'rgba(49, 199, 64, 0.2)',
+        'rgba(147, 2, 45, 0.2)',
+        'rgba(246, 92, 163, 0.2)',
+        'rgba(70, 123, 152, 0.2)',
+        'rgba(13, 28, 117, 0.2)',
+        'rgba(88, 134, 174, 0.2)',
+        'rgba(0, 0, 0, 0.2)'
+    ],
+        borderColor: [
+        'rgba(255, 26, 104, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(14, 72, 220, 1)',
+        'rgba(162, 111, 236, 1)',
+        'rgba(159, 4, 131, 1)',
+        'rgba(127, 215, 182, 1)',
+        'rgba(49, 199, 64, 1)',
+        'rgba(147, 2, 45, 1)',
+        'rgba(246, 92, 163, 1)',
+        'rgba(70, 123, 152, 1)',
+        'rgba(13, 28, 117, 1)',
+        'rgba(88, 134, 174, 1)',
+        'rgba(0, 0, 0, 1)'
+    ],
+        borderWidth: 1,
+        borderSkipped: false,
+        borderRadius: 5,
+        barPercentage: 0.8,
+    
+        }]
+    };
+
+
+    // getting think min and max dates of all epics
+    const dateData = [
+        {% for epic in project_epics %}
+    { x: [new Date('{{ epic.start_date|date:"Y-m-d" }}'), new Date('{{ epic.end_date|date:"Y-m-d" }}')] },
+    {% endfor %}
+    ];
+
+    const minDate = new Date(Math.min(...dateData.map(epic => epic.x[0])));
+    const maxDate = new Date(Math.max(...dateData.map(epic => epic.x[1])));
+
+
+    // plugins
+    const currentDatePlugin = {
+        id: 'currentDate',
+        afterDatasetsDraw(chart, args, options) {
+            const { ctx, data, chartArea: { top, right, bottom, left }, scales: { x, y } } = chart;
+
+            ctx.save();
+
+            ctx.beginPath();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = 'rgba(0, 0, 0, 1)';
+            ctx.setLineDash([5, 5]);
+
+            // draw line
+            ctx.moveTo(x.getPixelForValue(new Date()), top);
+            ctx.lineTo(x.getPixelForValue(new Date()), bottom);
+            ctx.stroke();
+
+            ctx.setLineDash([]);
+
+        }
+    };
+
+
+
+    // config 
+    const config = {
+        type: 'bar',
+        data,
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    position: 'top',
+                    type: 'time',
+                    time: {
+                        unit: 'day',
+                    },
+                    min: minDate,
+                    max: maxDate,
+                    ticks: {
+                        stepSize: 7,
+                    },
+                    title: {
+                        display: false,
+                        text: 'Date'
+                    }
+                },
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                    labels: {
+                        display: false,
+                    },
+                    title: {
+                        display: false
+                    }
+                },
+
+            },
+            aspectRatio: 1.5 / 2,
+            responsive: true,
+            maintainAspectRatio: false,
+        },
+        plugins: [currentDatePlugin]
+    };
+
+    // render init block
+    const myChart = new Chart(
+        document.getElementById('epicChart'),
+        config
+    );
+
+    // Instantly assign Chart.js version
+    const chartVersion = document.getElementById('chartVersion');
+    chartVersion.innerText = Chart.version;    
+    })
+
+</script>
+{% endblock extras %}

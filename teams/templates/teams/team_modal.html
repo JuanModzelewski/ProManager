@@ -15,15 +15,15 @@
     {{ team_form.title | as_crispy_field }}
 
 
-    {% if request.resolver_match.url_name == 'edit_team' %}
-        <h1 class="modal-title fs-5" id="projectTeamsModalLabel">Team Members</h1>
-        {% if team.members.all %}
+    {% if team_form.instance.pk %}
+        <h1 class="modal-title fs-5">Team Members</h1>
+        {% if team_form.instance.members.all %}
             <div class="list-group-item d-flex justify-content-between">
                 <p>Member Name</p>
                 <p>Select to delete</p>
             </div>
             <ul class="list-group list-group-flush">
-                {% for member in team.members.all %}
+                {% for member in team_form.instance.members.all %}
                     <li class="list-group-item d-flex justify-content-between">
                         {{ member.username }}
                         <input type="checkbox" name="member_ids" value="{{ member.id }}">
@@ -31,8 +31,8 @@
                 {% endfor %}
             </ul>
             <div class="d-md-flex justify-content-md-end mt-4 mb-4 me-3">
-                <button onclick="deleteSelectedMembers(event)" id="deleteSelectedMembersButton" type="button" class="btn btn-danger"
-                    data-team_id="{{ team.id }}" data-project_id="{{ project.id }}">
+                <button onclick="deleteSelectedMembers(event)" type="button" class="btn btn-danger"
+                    data-team_id="{{ team_form.instance.id }}" data-project_id="{{ project.id }}">
                     <i class="bi bi-trash"></i> Delete Selected
                 </button>
             </div>

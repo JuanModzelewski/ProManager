@@ -29,9 +29,8 @@
             hx-get="{% url 'edit_team' project.id team.id %}" hx-target="#teamDialog">
             <i class="bi bi-pencil-square"></i>
           </button>
-          <button onclick="deleteTeam(event)" type="button" class="btn btn-danger align-self-end"
-            data-team_id="{{ team.id }}" data-project_id="{{ project.id }}" data-team_title="{{ team.title }}"
-            data-bs-toggle="modal" data-bs-target="#deleteModal">
+          <button type="button" class="delete-team-btn btn btn-danger align-self-end" data-switch-case="delete-team"
+            data-team_id="{{ team.id }}" data-project_id="{{ project.id }}" data-team_title="{{ team.title }}">
             <i class="bi bi-trash"></i>
           </button>
         </div>
@@ -43,11 +42,5 @@
     {% endif %}
   </div>
 </div>
-
 {% endblock content %}
 
-
-
-{% block extras %}
-<script src="{% static 'js/projects.js' %}"></script>
-{% endblock extras %}

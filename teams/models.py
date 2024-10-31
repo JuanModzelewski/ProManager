@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Prefetch
 
 # Create your models here.
 
@@ -13,9 +14,4 @@ class ProjectTeam(models.Model):
     def __str__(self):
         """Return a string representation of the team."""
         return f"{self.title} - {self.project.id}. {self.project.title} with {self.members.count()} members"
-        
-    
-    
-    
-
 

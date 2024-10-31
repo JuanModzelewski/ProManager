@@ -30,8 +30,8 @@
             <i class="bi bi-pencil-square"></i>
             Edit
           </button>
-          <button onclick="deleteProject(event)" type="button" class="btn btn-danger mb-2"
-            data-project_id="{{ project.id }}" data-project_title="{{ project.title }}" data-bs-toggle="modal" data-bs-target="#deleteModal">
+          <button type="button" class="delete-project-btn btn btn-danger mb-2"
+            data-project_id="{{ project.id }}" data-project_title="{{ project.title }}">
             <i class="bi bi-trash"></i>
             Delete
           </button>
@@ -44,7 +44,3 @@
 </div>
 
 {% endblock content %}
-
-{% block extras %}
-<script src="{% static 'js/projects.js' %}"></script>
-{% endblock extras %}

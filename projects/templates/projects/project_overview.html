@@ -12,7 +12,7 @@
         <p>{{ project.description | linebreaks | safe }}</p>
         {% if user.is_authenticated and project.author == user %}
         <button type="button" class="btn btn-secondary mb-2" data-project_id="{{ project.id }}" data-bs-toggle="modal"
-            data-bs-target="#projectModal" hx-get="{% url 'edit_project' project.id %}" hx-target="#projectDialog">
+            data-bs-target="#primaryModal" hx-get="{% url 'edit_project' project.id %}" hx-target="#primaryDialog">
             <i class="bi bi-pencil-square"></i>
             Edit
         </button>

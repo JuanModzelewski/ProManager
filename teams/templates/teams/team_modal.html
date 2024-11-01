@@ -31,7 +31,7 @@
                 {% endfor %}
             </ul>
             <div class="d-md-flex justify-content-md-end mt-4 mb-4 me-3">
-                <button id="delete-members-btn" type="button" class="btn btn-danger"
+                <button onclick="deleteSelectedMembers(event)" type="button" class="btn btn-danger"
                     data-team_id="{{ team_form.instance.id }}" data-project_id="{{ project.id }}">
                     <i class="bi bi-trash"></i> Delete Selected
                 </button>
@@ -59,8 +59,14 @@
 
 
 {% block extras %}
-<script src="{% static 'js/modals.js' %}"></script>
 <script>
-
+  document.getElementById('member-search-input').addEventListener('input', function() {
+      var button = document.getElementById('edit-team-form-button');
+      if (this.value) {
+          button.textContent = 'Search and Add';
+      } else {
+          button.textContent = '{% if request.resolver_match.url_name == "edit_team" %}Update Team{% else %}Create Team{% endif %}';
+      }
+  });
 </script>
 {% endblock extras %}

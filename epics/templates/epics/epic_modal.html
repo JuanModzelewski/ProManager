@@ -13,7 +13,11 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" id="create-epic-form-button" class="btn btn-primary">
-            Create Epic
+            {% if request.resolver_match.url_name == 'edit_epic' %}
+                Update Epic
+            {% else %}
+                Create Epic
+            {% endif %}
         </button>
     </div>
 </form>

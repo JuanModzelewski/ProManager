@@ -7,8 +7,8 @@
 {% block content %}
 <div class="project-details">
     {% if user.is_authenticated and project.author == user %}
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#epicModal"
-        hx-get="{% url 'create_epic' project.id %}" hx-target="#epicDialog">
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#primaryModal"
+        hx-get="{% url 'create_epic' project.id %}" hx-target="#primaryDialog">
         <i class="bi bi-plus-circle"></i>
         Create Epic
     </button>
@@ -24,7 +24,7 @@
     {% endif %}
 
     <div class="mt-4 mb-4">
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col" class="text-center">#</th>
@@ -32,29 +32,68 @@
                     <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
                     <th scope="col">Updated On</th>
+                    {% if user.is_authenticated and project.author == user %}
                     <th scope="col" width="3%">Edit</th>
                     <th scope="col" width="3%">Delete</th>
+                    {% else %}
+                    <th scope="col" width="3%">View</th>
+                    {% endif %}
                 </tr>
             </thead>
             <tbody>
                 {% for epic in project_epics %}
                 <tr>
-                    <td class="text-center fs-5"><i class="bi bi-circle-fill epic-color"></i></td>
-                    <td>{{epic.title}}</td>
-                    <td>{{epic.start_date}}</td>
-                    <td>{{epic.end_date}}</td>
-                    <td>{{epic.updated_on}}</td>
-                    <td><button type="button" class="btn btn-secondary me-3 btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#projectTeamsModal" hx-get="" hx-target="#teamDialog">
+                    <td class="text-center fs-5" 
+                        hx-get="{% url 'view_epic_details' project.id epic.id %}" 
+                        hx-target="#primaryDialog" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#primaryModal">
+                        <i class="bi bi-circle-fill epic-color"></i>
+                    </td>
+                    <td hx-get="{% url 'view_epic_details' project.id epic.id %}" 
+                        hx-target="#primaryDialog" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#primaryModal">
+                        {{epic.title}}
+                    </td>
+                    <td hx-get="{% url 'view_epic_details' project.id epic.id %}" 
+                        hx-target="#primaryDialog"
+                        data-bs-toggle="modal"
+                        data-bs-target="#primaryModal">
+                        {{epic.start_date}}
+                    </td>
+                    <td hx-get="{% url 'view_epic_details' project.id epic.id %}" 
+                        hx-target="#primaryDialog"
+                        data-bs-toggle="modal"
+                        data-bs-target="#primaryModal">
+                        {{epic.end_date}}
+                    </td>
+                    <td hx-get="{% url 'view_epic_details' project.id epic.id %}" 
+                        hx-target="#primaryDialog"
+                        data-bs-toggle="modal"
+                        data-bs-target="#primaryModal">
+                        {{epic.updated_on}}
+                    </td>
+                    {% if user.is_authenticated and project.author == user %}
+                    <td><button type="button" class="btn btn-secondary me-3 btn-sm" data-bs-toggle="modal" data-bs-target="#primaryModal"
+                            hx-target="#primaryDialog"
+                            hx-get="{% url 'edit_epic' project.id epic.id %}">
                             <i class="bi bi-pencil-square"></i>
                         </button>
                     </td>
-                    <td><button onclick="deleteEpic(event)" type="button" class="btn btn-danger btn-sm"
+                    <td><button type="button" class="delete-epic-btn btn btn-danger btn-sm"
                             data-epic_id="{{ epic.id }}" data-project_id="{{ project.id }}"
-                            data-epic_title="{{ epic.title }}" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                            data-epic_title="{{ epic.title }}">
                             <i class="bi bi-trash"></i>
                         </button>
                     </td>
+                    {% else %}
+                    <td><button type="button" class="btn btn-secondary btn-sm"
+                            hx-get="{% url 'view_epic_details' project.id epic.id %}" hx-target="#primaryDialog" data-bs-target="#primaryModal" data-bs-toggle="modal">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </tbody>
@@ -125,7 +164,7 @@
         const data = {
             labels: [
                 {% for epic in project_epics %}
-        '{{ forloop.counter }}',
+        '{{ epic.title }}',
             {% endfor %}
         ],
         datasets: [{
@@ -221,7 +260,7 @@
     // config 
     const config = {
         type: 'bar',
-        data,
+        data: data,
         options: {
             indexAxis: 'y',
             scales: {
@@ -239,8 +278,14 @@
                     title: {
                         display: false,
                         text: 'Date'
+                    },
+                    labels: {
+                        display: false
                     }
                 },
+                y: {
+                    display: false
+                }
             },
             plugins: {
                 legend: {
@@ -251,6 +296,23 @@
                     title: {
                         display: false
                     }
+                },
+                tooltip: {
+                        enabled: true,
+                        mode: 'index',
+                        intersect: false,
+                        position: 'nearest',
+                        titleAlign: 'center',
+                        bodyAlign: 'center',
+                        xPadding: 10,
+                        yPadding: 10,
+                        caretPadding: 10,
+                        caretSize: 10,
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return ' ';
+                            }
+                        }
                 },
 
             },

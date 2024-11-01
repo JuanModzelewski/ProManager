@@ -6,8 +6,8 @@
 
 {% block content %}
 <div class="project-details">
-  <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#projectTeamsModal"
-      hx-get="{% url 'create_team' project.id %}" hx-target="#teamDialog">
+  <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#primaryModal"
+      hx-get="{% url 'create_team' project.id %}" hx-target="#primaryDialog">
       <i class="bi bi-person-add"></i>
       Create Team
     </button>
@@ -25,11 +25,11 @@
         </ul>
         <hr>
         <div class="d-flex flex-row flex-wrap align-items-center">
-          <button type="button" class="btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#projectTeamsModal"
-            hx-get="{% url 'edit_team' project.id team.id %}" hx-target="#teamDialog">
+          <button type="button" class="btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#primaryModal"
+            hx-get="{% url 'edit_team' project.id team.id %}" hx-target="#primaryDialog">
             <i class="bi bi-pencil-square"></i>
           </button>
-          <button type="button" class="delete-team-btn btn btn-danger align-self-end" data-switch-case="delete-team"
+          <button type="button" class="delete-team-btn btn btn-danger align-self-end" 
             data-team_id="{{ team.id }}" data-project_id="{{ project.id }}" data-team_title="{{ team.title }}">
             <i class="bi bi-trash"></i>
           </button>

@@ -11,6 +11,19 @@ from .forms import ProjectTeamForm
 
 
 
+class ProjectTeamsView(generic.UpdateView):
+    model = ProjectTeam
+    template_name = 'teams/teams.html'
+    form_class = ProjectTeamForm
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().get(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request, *args, **kwargs)
+        
 
 # Create your views here.
 def view_project_teams(request, project_id):
@@ -47,8 +60,10 @@ def edit_project_team(request, project_id, team_id):
             team_form.save()
             if 'members' in team_form.cleaned_data and team_form.cleaned_data['members']:
                 project_teams.members.set(team_form.cleaned_data['members'])
-            messages.success(request, f"Team '{project_teams.title}' updated.")
-            return HttpResponseClientRefresh()
+                messages.success(request, f"Team '{project_teams.title}' updated.")
+                return HttpResponseClientRefresh()
+            elif not team_form.has_changed():
+                return HttpResponseClientRefresh()
     else:
         team_form = ProjectTeamForm(instance=project_teams)
 
@@ -58,11 +73,16 @@ def edit_project_team(request, project_id, team_id):
 def delete_team_members(request, project_id, team_id, member_ids):
     project = get_object_or_404(Project, pk=project_id)
     project_teams = get_object_or_404(ProjectTeam, pk=team_id)
-    member_ids = member_ids.split(',')
-    members = User.objects.filter(id__in=member_ids)
-    project_teams.members.remove(*members)
-    messages.success(request, f"Members removed from team '{project_teams.title}'.")
-    return HttpResponseRedirect(reverse('view_project_teams', kwargs={'project_id': project.id}))
+
+    if project_teams.project.author == request.user:
+        member_ids = member_ids.split(',')
+        members = User.objects.filter(id__in=member_ids)
+        project_teams.members.remove(*members)
+        messages.success(request, f"Members removed from team '{project_teams.title}'.")
+        return HttpResponseRedirect(reverse('view_project_teams', kwargs={'project_id': project.id}))
+    else:
+        messages.error(request, f"You are not authorized to delete members from this team.")
+        return HttpResponseRedirect(reverse('view_project_teams', kwargs={'project_id': project.id}))
 
 
 def delete_team(request, project_id, team_id):

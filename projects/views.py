@@ -59,6 +59,7 @@ def edit_project(request, project_id):
         messages.error(request, f"You are not authorized to edit this project.")
         return HttpResponseRedirect(reverse('projects'))
     
+    
 def project_overview(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     return render(request, 'projects/project_overview.html', {'project': project})

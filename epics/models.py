@@ -16,4 +16,4 @@ class ProjectEpic(models.Model):
 
     def __str__(self):
         """Return a string representation of the epic."""
-        return f"{self.title} in {self.project.id}. {self.project.title}"
+        return f"{self.title}"

@@ -1,7 +1,5 @@
 {% extends 'project_manager.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
-
 
 
 {% block content %}
@@ -32,6 +30,7 @@
                     <th scope="col">Start Date</th>
                     <th scope="col">End Date</th>
                     <th scope="col">Updated On</th>
+                    <th scope="col">Tasks</th>
                     {% if user.is_authenticated and project.author == user %}
                     <th scope="col" width="3%">Edit</th>
                     <th scope="col" width="3%">Delete</th>
@@ -74,6 +73,17 @@
                         data-bs-target="#primaryModal">
                         {{epic.updated_on}}
                     </td>
+                    <td>
+                        {% for task in epic.projecttask_set.all %}
+                        {% if task.status == 'todo' or task.status == 'in_progress' %}
+                        <ul class="epic-tasks">
+                            <li>
+                                <a href="{% url 'view_project_tasks' project.id %}">{{ task.title }} | {{ task.status }}</a>
+                            </li>
+                        </ul> 
+                        {% endif %}
+                        {% endfor %}
+                    </td>
                     {% if user.is_authenticated and project.author == user %}
                     <td><button type="button" class="btn btn-secondary me-3 btn-sm" data-bs-toggle="modal" data-bs-target="#primaryModal"
                             hx-target="#primaryDialog"
@@ -99,10 +109,7 @@
             </tbody>
         </table>
     </div>
-
-
 </div>
-
 {% endblock content %}
 
 

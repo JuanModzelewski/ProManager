@@ -1,6 +1,7 @@
 const deleteTeamBtn = document.querySelectorAll('.delete-team-btn');
 const deleteProjectBtn = document.querySelectorAll('.delete-project-btn');
 const deleteEpicBtn = document.querySelectorAll('.delete-epic-btn');
+const deleteTaskBtn = document.querySelectorAll('.delete-task-btn');
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -32,6 +33,20 @@ function initEventListeners() {
             deleteEpic(deleteEpicElement);
         });
     }
+
+    for (let button of deleteTaskBtn) {
+        button.addEventListener('click', (e) => {
+            const deleteTaskElement = e.target.closest('.delete-task-btn');
+            deleteTask(deleteTaskElement);
+            console.log(deleteTaskElement);
+        });
+    }
+
+    htmx.on("hidden.bs.modal", () => {
+        document.getElementById("primaryDialog").innerHTML = ""
+        console.log("modal hidden");
+      })
+
 
     deleteSelectedMembers();
 
@@ -136,4 +151,28 @@ function deleteSelectedMembers(event) {
         deleteConfirm.href = `delete_members/${projectId}/${teamId}/${selectedMemberIds.join(',')}`;
 
     }
+}
+
+
+function deleteTask(deleteTaskElement) {
+    let projectId = deleteTaskElement.getAttribute("data-project_id");
+    let taskId = deleteTaskElement.getAttribute("data-task_id");
+    let taskTitle = deleteTaskElement.getAttribute("data-task_title");
+    let deleteTaskModal = new bootstrap.Modal(document.querySelector('#deleteModal'));
+
+    let deleteModalLabel = document.getElementById('deleteModalLabel');
+    let deleteModalBody = document.getElementById('deleteModalBody');
+    let deleteConfirm = document.getElementById('deleteConfirm');
+
+    deleteModalBody.innerHTML = `<p>Are you sure you want to delete <strong>${taskTitle}</strong> from this project?</p><p>This action cannot be undone.</p>`;
+    deleteModalLabel.textContent = 'Delete Task?';
+    deleteConfirm.href = `delete_task/${projectId}/${taskId}`;
+    deleteTaskModal.show();
+}
+
+
+function editTask(editTaskElement){
+    let projectId = editTaskElement.getAttribute("data-project_id");
+    let taskId = editTaskElement.getAttribute("data-task_id");
+    editTaskElement.setAttribute("hx-get", `{{ url_for('edit_task') }} ${projectId} ${taskId} }}`);
 }

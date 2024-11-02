@@ -25,4 +25,5 @@ urlpatterns = [
     path('projects/', include('projects.urls'), name='projects'),
     path('teams/', include('teams.urls'), name='teams'),
     path('epics/', include('epics.urls'), name='epics'),
+    path('tasks/', include('tasks.urls'), name='tasks'),
 ]

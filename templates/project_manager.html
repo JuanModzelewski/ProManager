@@ -13,7 +13,7 @@
     <div class="sidebar">
         <a class="nav-link {% if request.resolver_match.url_name == 'project_overview' %}active" aria-current="page {% endif %}" href="{% url 'project_overview' project.id %}">Project Overview: <br>{{ project.title }}</a>
         <a class="nav-link {% if request.resolver_match.url_name == 'view_project_epics' %}active" aria-current="page {% endif %}" href="{% url 'view_project_epics' project.id %}">Timeline</a>
-        <a href="#board">Board</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'view_project_tasks' %}active" aria-current="page {% endif %}" href="{% url 'view_project_tasks' project.id %}">Board</a>
         <a href="#task-manager">Task Manager</a>
         {% if user.is_authenticated and project.author == user %}
         <a class="nav-link {% if request.resolver_match.url_name == 'view_project_teams' %}active" aria-current="page {% endif %}" href="{% url 'view_project_teams' project.id %}">Teams</a>

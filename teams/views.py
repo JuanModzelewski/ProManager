@@ -11,21 +11,6 @@ from .forms import ProjectTeamForm
 
 
 
-class ProjectTeamsView(generic.UpdateView):
-    model = ProjectTeam
-    template_name = 'teams/teams.html'
-    form_class = ProjectTeamForm
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        return super().get(request, *args, **kwargs)
-    
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        return super().post(request, *args, **kwargs)
-        
-
-# Create your views here.
 def view_project_teams(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     project_teams = ProjectTeam.objects.filter(project=project)
@@ -66,7 +51,6 @@ def edit_project_team(request, project_id, team_id):
                 return HttpResponseClientRefresh()
     else:
         team_form = ProjectTeamForm(instance=project_teams)
-
     return render(request, "teams/team_modal.html", {"project": project, "team_form": team_form, "project_teams": project_teams})
 
 

@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponse
 from django_htmx.http import HttpResponseClientRefresh
-import datetime
 from .models import ProjectEpic
+from tasks.models import ProjectTask
 from projects.models import Project
 from .forms import ProjectEpicForm
 
@@ -18,6 +18,7 @@ class ProjectEpicsView(generic.ListView):
     """
     model = ProjectEpic
     project_epics = ProjectEpic.objects.all()
+    epic_tasks = ProjectTask.objects.all()
     template_name = "epics/epics.html"
     context_object_name = "project_epics"
 
@@ -27,6 +28,7 @@ class ProjectEpicsView(generic.ListView):
         """
         project_id = self.kwargs.get("project_id")
         self.project = get_object_or_404(Project, pk=project_id)
+        self.epic_tasks = ProjectTask.objects.filter(project=self.project)
         return ProjectEpic.objects.filter(project=self.project)
 
     def get_context_data(self, **kwargs):

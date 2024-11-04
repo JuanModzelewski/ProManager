@@ -1,4 +1,7 @@
-
+body {
+    padding-top: 0.01rem; /* ensure the navar stays fixed*/
+    background-color: #F9FAFC;
+}
 /* navbar */
 .brand {
     font-family: Exo 2, sans-serif;
@@ -21,8 +24,6 @@
     height: 4rem;
     border-bottom: 3px solid #544461;
     box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.15);
-    position: sticky !important;
-    top: 0px;
     z-index: 10;
 }
 
@@ -80,7 +81,8 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 1.5rem;
+    margin-top: 64px;
+    padding-top: 1rem;
 }
 
 .card {
@@ -94,15 +96,16 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     width: 40%;
 }
 
 /* Main project details container */
 .project-details {
     margin-left: 275px;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     padding-right: 2rem;
+    margin-top: 64px;
     position: relative;
 }
 
@@ -264,6 +267,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 60px;
 }
 
 .cover-content {
@@ -388,6 +392,7 @@ div.content {
 /* On screens that are less than 780px wide*/
 @media screen and (max-width: 780px) {
     .sidebar {
+        margin-top: 63px;
         width: 100%;
         height: auto;
         position: relative;

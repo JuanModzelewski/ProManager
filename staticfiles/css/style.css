@@ -1,3 +1,5 @@
+
+/* navbar */
 .brand {
     font-family: Exo 2, sans-serif;
     font-size: 1.75rem;
@@ -15,14 +17,34 @@
     font-weight: 300;
 }
 
+.navbar {
+    height: 4rem;
+    border-bottom: 3px solid #544461;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.navbar-expanded {
+    background-color: #F9FAFC;
+}
+
 .nav-item {
     font-size: 1.25rem;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
 }
 
-.nav-link:hover {
+.navbar .nav-link {
+    color: #445261;
+    padding-left: 1rem;
+}
+
+.navbar .nav-link:hover {
     color: #544461;
+    background-color: #5444610e;
+    border-radius: 0.5rem;
 }
 
 .active {
@@ -42,16 +64,7 @@
     background-color: #F9FAFC;
 }
 
-.navbar {
-    height: 4rem;
-    border-bottom: 3px solid #544461;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.15);
-    position: sticky;
-    top: 0;
-    z-index: 2;
-}
-
-
+/* Messages */
 .message-notification {
     align-self: center;
     height: 1.25rem;
@@ -60,30 +73,7 @@
     z-index: 3;
 }
 
-.login-form {
-    margin: 1rem;
-    border: solid 1px #5444614e;
-    border-radius: 1rem;
-    padding: 3rem;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
-    background-color: #fff;
-}
-
-.login-info {
-    margin: 1rem;
-    margin-bottom: 0;
-    max-width: 400px;
-    width: 100%;
-}
-
-.account-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
+/* Projects */
 .project-container {
     display: flex;
     flex-direction: row;
@@ -108,6 +98,7 @@
     width: 40%;
 }
 
+/* Main project details container */
 .project-details {
     margin-left: 275px;
     padding-top: 2rem;
@@ -115,10 +106,14 @@
     position: relative;
 }
 
+/* Footer */
 .footer {
     z-index: 1;
+    background-color: #544461;
 }
 
+
+/* Board */
 .list-group-item {
     font-size: 1rem;
 }
@@ -196,6 +191,8 @@
     color: #271e2e;
 }
 
+
+/* Task Manager */
 .epic-accordion:hover {
     box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
     border-radius: 1rem;
@@ -232,6 +229,94 @@
 }
 
 
+/* The Account Pages */
+.login-form {
+    margin: 1rem;
+    border: solid 1px #5444614e;
+    border-radius: 1rem;
+    padding: 3rem;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+    background-color: #fff;
+}
+
+.login-info {
+    margin: 1rem;
+    margin-bottom: 0;
+    max-width: 400px;
+    width: 100%;
+}
+
+.account-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* The Homepage */
+.cover {
+    background: url('/static/images/homepage-background.jpg') no-repeat center center/cover;
+    color: #544461;
+    text-align: center;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cover-content {
+    max-width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    background-color: rgba(255, 255, 255, 0.223);
+    
+}
+
+.cover-details {
+    text-align: center;
+    width: 80%;
+}
+
+.feature-image, .feature-image-alternate {
+    max-width: inherit;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.feature-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.feature-details-col {
+    padding-left: 2rem;
+}
+
+.feature-details-col, 
+.feature-details-col-alternate {
+    width: 30%;
+}
+
+.feature-row-alternate {
+    background-color: #544461;
+    color: white;
+}
+
+
 /* The side navigation menu */
 .sidebar {
     margin: 0;
@@ -244,7 +329,6 @@
     overflow: auto;
 }
 
-/* Sidebar links */
 .sidebar a {
     display: block;
     color: black;
@@ -254,25 +338,24 @@
     border-bottom: 1px solid #54446138;
 }
 
-/* Active/current link */
 .sidebar a.active {
     background-color: #544461;
     color: white;
 }
 
-/* Links on mouse-over */
 .sidebar a:hover:not(.active) {
     background-color: #d6d0db;
     color: rgb(38, 38, 38);
 }
 
-/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 div.content {
     margin-left: 350px;
     padding: 1px 16px;
     height: 1000px;
 }
 
+
+/* On screens that are less than 1200px wide*/
 @media screen and (max-width: 1200px) {
     .card-container {
         width: 60%;
@@ -282,83 +365,94 @@ div.content {
         flex-direction: column;
     }
 
+    .feature-details-col {
+        width: 50% !important;
+    }
+
+    .feature-details-col-alternate {
+        width: 50% !important;
+        padding-left: 3rem;
+    }
+
+    .feature-image-col {
+        padding-left: 3rem;
+    }
+
+    .feature-image-col-alternate {
+        padding-right: 3rem;
+    }
+
 }
 
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
+
+/* On screens that are less than 780px wide*/
+@media screen and (max-width: 780px) {
     .sidebar {
         width: 100%;
         height: auto;
         position: relative;
+        display: flex;
+        flex-direction: column;
     }
 
     .sidebar a {
         float: left;
+        height: max-content;
     }
 
     div.content {
         margin-left: 0;
     }
 
+    .project-details {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
     .card-container {
         width: 80%;
     }
 
+    .feature-image-col, .feature-image-col-alternate {
+        width: 90% !important;
+        padding: 0 !important;
+    }
+
+    .feature-details-col {
+        width: 80% !important;
+        margin-top: 2rem;
+        padding: 0 !important;
+    }
+
+    .feature-details-col-alternate {
+        width: 80% !important;
+        margin-bottom: 2rem;
+        padding: 0 !important;
+    }
+
+    .feature-details-col h2,
+    .feature-details-col-alternate h2 {
+        text-align: center;
+    }
 
 }
 
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+
+/* On screens that are less than 400px */
 @media screen and (max-width: 400px) {
     .sidebar a {
         text-align: center;
         float: none;
     }
+
+    .cover-content {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .cover-details {
+        width: 100%;
+    }
 }
 
 
-.hero {
-    background: url('/static/images/homepage-background.jpg') no-repeat center center/cover;
-    color: white;
-    text-align: center;
-    height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero-content {
-    max-width: 50%;
-    height: 100%;
-    background-color: #544461d6;
-    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-    padding: 20px;
-    align-content: center;
-    vertical-align: middle;
-}
-
-.cta-button {
-    background-color: #28a745;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.features,
-.about,
-.contact {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.features h2,
-.about h2,
-.contact h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.feature-item {
-    margin: 20px 0;
-}

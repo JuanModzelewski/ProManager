@@ -4,10 +4,11 @@
 {% block content %}
 <div class="project-container">
   <div class="card-container">
+    {% if object_list %}
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#primaryModal"
       hx-get="{% url 'create_project' %}" hx-target="#primaryDialog">
       <i class="bi bi-folder-plus"></i>
-      Create Project
+      Create New Project
     </button>
     <!-- For loop to create a card for each project -->
     {% for project in object_list %}
@@ -40,6 +41,26 @@
       </div>
     </div>
     {% endfor %}
+    {% else %}
+    <div class="card">
+      <div class="card-header">
+        Welcome to ProManager
+      </div>
+      <div class="card-body d-flex flex-row flex-wrap justify-content-between">
+        <div class="p-2 align-self-start">
+            <h5 class="card-title">Lets get started on your first project</h5>
+          <p class="card-text">Click on the button below to create your first project</p>
+        </div>
+        <div class="d-flex flex-column align-self-end">
+          <button type="button" class="btn btn-primary mb-2 mt-2" data-project_id="{{ project.id }}" data-bs-toggle="modal"
+            data-bs-target="#primaryModal" hx-get="{% url 'create_project' %}" hx-target="#primaryDialog">
+            <i class="bi bi-pencil-square"></i>
+            Create Your First Project
+          </button>
+        </div>
+      </div>
+    </div>
+    {% endif %}
   </div>
 </div>
 {% endblock content %}

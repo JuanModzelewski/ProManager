@@ -1,35 +1,75 @@
 {% extends "base.html" %}
 {% load static %}
+{% url 'home' as home_url %}
+{% url 'projects' as project_url %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
 
 {% block content %}
 
 <!-- index.html content starts here -->
-<section class="hero">
-    <div class="hero-content">
-        <h2>Project Management Simplified</h2>
-        <p>Organize, track, and manage your projects efficiently with ProManager.</p> <a href="#signup"
-            class="cta-button">Get Started</a>
+<section class="cover">
+    <div class="cover-content">
+        <div class="cover-details">
+            <h2 class="fs-1">Project Management Simplified</h2>
+                <p class="fs-5 mt-2">Organize, track, and manage your projects efficiently with ProManager.</p>
+                {% if user.is_authenticated %}
+                <a href="{% url 'projects' %}" class="btn btn-primary btn-lg mt-3">Go to Projects</a>
+                {% else %}
+                <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg mt-3">Get Started</a>
+                {% endif %}
+        </div>
     </div>
 </section>
-<section id="features" class="features">
-    <h2>Features</h2>
-    <div class="feature-item">
-        <h3>Task Management</h3>
-        <p>Create, assign, and track tasks easily.</p>
+<section class="d-flex flex-column align-items-center">
+    <div class="row feature-row">
+        <div class="col-md-6 feature-image-col">
+            <img class="feature-image" src="{% static 'images/project-time-line.jpg' %}" alt="ProManager Project Timeline">
+        </div>
+        <div class="col-md-6 feature-details-col">
+            <h2>Detailed Project Timeline</h2>
+            <hr>
+            <ul>
+                <li>Comprehensively track project milestones.</li>
+                <li>Keep track of project epics and assignees.</li>
+                <li>Edit or remove epics on the go</li>
+                <li>Keep your team informed and updated</li>
+            </ul>
+        </div>
     </div>
-    <div class="feature-item">
-        <h3>Team Collaboration</h3>
-        <p>Collaborate with your team in real-time.</p>
+    <div class="row feature-row feature-row-alternate">
+        <div class="col-md-6 feature-details-col-alternate">
+            <h2>Organized Project Board</h2>
+            <hr>
+            <ul>
+                <li>Create and assign project task to teams and epics</li>
+                <li>View the status of tasks and when they were last updated</li>
+                <li>Edit or remove tasks on the go</li>
+                <li>Filter tasks assigned to you</li>
+            </ul>
+        </div>
+        <div class="col-md-6 feature-image-col-alternate">
+            <img class="feature-image-alternate" src="{% static 'images/project-board.jpg' %}"
+                alt="ProManager Project Board">
+        </div>
     </div>
-    <div class="feature-item">
-        <h3>Progress Tracking</h3>
-        <p>Monitor your project's progress with detailed reports.</p>
+    <div class="row feature-row">
+        <div class="col-md-6 feature-image-col">
+            <img class="feature-image" src="{% static 'images/project-task-manager.jpg' %}" alt="ProManager Task Manager">
+        </div>
+        <div class="col-md-6 feature-details-col">
+            <h2>Task Manager</h2>
+            <hr>
+            <ul>
+                <li>View all project epics and tasks in one place</li>
+                <li>Update or remove tasks and epics</li>
+                <li>Management made easy</li>
+            </ul>
+        </div>
     </div>
-</section>
-<section id="about" class="about">
-    <h2>About ProManager</h2>
-    <p>ProManager is designed to help teams manage their projects efficiently. Our platform offers a range of tools to
-        streamline project management tasks and enhance team collaboration.</p>
+      
+
 </section>
 
 <!-- index.html content ends here -->

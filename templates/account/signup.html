@@ -9,8 +9,7 @@
 
 {% block content %}
 <div class="acount-container">
-  <div class="d-flex flex-column align-items-center">
-    
+  <div class="d-flex flex-column align-items-center navbar-padding">
     <div class="login-info col-md-6 text-center">
       <h3>{% trans "Sign Up" %}</h3>
       <p>{% blocktrans %}
@@ -21,8 +20,6 @@
         {% endblocktrans %}
       </p>
     </div>
-
-
     <div class="login-form d-flex flex-column align-items-center">
       <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
         {% csrf_token %}
@@ -35,7 +32,6 @@
         </div>
       </form>
     </div>
-
   </div>
 </div>
 

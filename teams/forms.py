@@ -1,17 +1,15 @@
 from django import forms
 from .models import ProjectTeam
 from django.contrib.auth.models import User
-from django.db.models import Q
-
-
 
 
 class ProjectTeamForm(forms.ModelForm):
+
     class Meta:
         model = ProjectTeam
         fields = ['title', 'search_member',]
 
-
+    """ Custom widgets for the search_member field. """
     search_member = forms.CharField(
         label='Search for a member',
         required=False,
@@ -23,11 +21,11 @@ class ProjectTeamForm(forms.ModelForm):
         help_text='You can add more than one member. Separate usernames with commas',
     )
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
 
     def clean_search_member(self):
+        """
+        Validate the search_member field and return the cleaned data.
+        """
         search_input = self.cleaned_data.get('search_member')
         if search_input:
             usernames = [name.strip() for name in search_input.split(',')]

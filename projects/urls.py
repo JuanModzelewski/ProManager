@@ -2,7 +2,6 @@ from . import views
 from django.urls import path, include
 
 
-
 urlpatterns = [
     path("", views.ProjectView.as_view(), name="projects"),
     path("project_modal", views.create_project, name="create_project"),

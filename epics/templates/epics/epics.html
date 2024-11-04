@@ -1,7 +1,6 @@
 {% extends 'project_manager.html' %}
 {% load static %}
 
-
 {% block content %}
 <div class="project-details">
     {% if user.is_authenticated and project.author == user %}
@@ -12,9 +11,9 @@
     </button>
     {% endif %}
 
-
+    <!-- Chart to display the project epics -->
     {% if project_epics %}
-    <div>
+    <div class="chart-container pt-3">
         <canvas id="epicChart"></canvas>
     </div>
     {% else %}
@@ -40,6 +39,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Table display of epics -->
                 {% for epic in project_epics %}
                 <tr>
                     <td class="text-center fs-5" 
@@ -116,7 +116,8 @@
 {% block extras %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 <script>
     $(document).ready(function () {
         // Icon colors to identify epics
@@ -179,7 +180,7 @@
             data: [
                 {% for epic in project_epics %}
                 { x: [new Date('{{ epic.start_date|date:"Y-m-d" }}'), new Date('{{ epic.end_date|date:"Y-m-d" }}')], y: 1 },
-        {% endfor %}
+                {% endfor %}
     ],
         backgroundColor: [
         'rgba(255, 26, 104, 0.2)',
@@ -223,46 +224,37 @@
         borderSkipped: false,
         borderRadius: 5,
         barPercentage: 0.8,
-    
         }]
     };
 
 
-    // getting think min and max dates of all epics
+    // getting the min and max dates of all epics
     const dateData = [
         {% for epic in project_epics %}
     { x: [new Date('{{ epic.start_date|date:"Y-m-d" }}'), new Date('{{ epic.end_date|date:"Y-m-d" }}')] },
     {% endfor %}
     ];
-
     const minDate = new Date(Math.min(...dateData.map(epic => epic.x[0])));
     const maxDate = new Date(Math.max(...dateData.map(epic => epic.x[1])));
-
 
     // plugins
     const currentDatePlugin = {
         id: 'currentDate',
         afterDatasetsDraw(chart, args, options) {
             const { ctx, data, chartArea: { top, right, bottom, left }, scales: { x, y } } = chart;
-
+            // draw current date line
             ctx.save();
-
             ctx.beginPath();
             ctx.lineWidth = 1;
             ctx.strokeStyle = 'rgba(0, 0, 0, 1)';
             ctx.setLineDash([5, 5]);
-
-            // draw line
             ctx.moveTo(x.getPixelForValue(new Date()), top);
             ctx.lineTo(x.getPixelForValue(new Date()), bottom);
             ctx.stroke();
-
             ctx.setLineDash([]);
 
         }
     };
-
-
 
     // config 
     const config = {
@@ -305,27 +297,29 @@
                     }
                 },
                 tooltip: {
-                        enabled: true,
-                        mode: 'index',
-                        intersect: false,
-                        position: 'nearest',
-                        titleAlign: 'center',
-                        bodyAlign: 'center',
-                        xPadding: 10,
-                        yPadding: 10,
-                        caretPadding: 10,
-                        caretSize: 10,
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                return ' ';
-                            }
+                    enabled: true,
+                    mode: 'index',
+                    intersect: true,
+                    position: 'nearest',
+                    titleAlign: 'center',
+                    bodyAlign: 'center',
+                    xPadding: 10,
+                    yPadding: 10,
+                    caretPadding: 10,
+                    caretSize: 10,
+                    callbacks: {
+                        label: function (tooltipItem) {
+                            return ' ';
                         }
+                    }
                 },
-
             },
             aspectRatio: 1.5 / 2,
             responsive: true,
             maintainAspectRatio: false,
+            interaction: {
+                mode: 'point',
+            }
         },
         plugins: [currentDatePlugin]
     };
@@ -340,6 +334,5 @@
     const chartVersion = document.getElementById('chartVersion');
     chartVersion.innerText = Chart.version;    
     })
-
 </script>
 {% endblock extras %}

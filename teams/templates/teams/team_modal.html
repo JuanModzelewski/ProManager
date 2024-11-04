@@ -4,41 +4,42 @@
 <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>
     <div class="modal-header">
         <h1 class="modal-title fs-5" id="projectTeamsModalLabel">
+            <!-- Changes the text of the heading based on the url name -->
             {% if request.resolver_match.url_name == 'edit_team' %}
-                Edit Team
+            Edit Team
             {% else %}
-                Create Team
+            Create Team
             {% endif %}
         </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
+    
     {{ team_form.title | as_crispy_field }}
 
-
     {% if team_form.instance.pk %}
-        <h1 class="modal-title fs-5">Team Members</h1>
-        {% if team_form.instance.members.all %}
-            <div class="list-group-item d-flex justify-content-between">
-                <p>Member Name</p>
-                <p>Select to delete</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                {% for member in team_form.instance.members.all %}
-                    <li class="list-group-item d-flex justify-content-between">
-                        {{ member.username }}
-                        <input type="checkbox" name="member_ids" value="{{ member.id }}">
-                    </li>
-                {% endfor %}
-            </ul>
-            <div class="d-md-flex justify-content-md-end mt-4 mb-4 me-3">
-                <button onclick="deleteSelectedMembers(event)" type="button" class="btn btn-danger"
-                    data-team_id="{{ team_form.instance.id }}" data-project_id="{{ project.id }}">
-                    <i class="bi bi-trash"></i> Delete Selected
-                </button>
-            </div>
-        {% else %}
-            <p>No members in this team</p>
-        {% endif %}
+    <h1 class="modal-title fs-5">Team Members</h1>
+    {% if team_form.instance.members.all %}
+    <div class="list-group-item d-flex justify-content-between">
+        <p>Member Name</p>
+        <p>Select to delete</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for member in team_form.instance.members.all %}
+        <li class="list-group-item d-flex justify-content-between">
+            {{ member.username }}
+            <input type="checkbox" name="member_ids" value="{{ member.id }}">
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="d-md-flex justify-content-md-end mt-4 mb-4 me-3">
+        <button onclick="deleteSelectedMembers(event)" type="button" class="btn btn-danger"
+            data-team_id="{{ team_form.instance.id }}" data-project_id="{{ project.id }}">
+            <i class="bi bi-trash"></i> Delete Selected
+        </button>
+    </div>
+    {% else %}
+    <p>No members in this team</p>
+    {% endif %}
     {% endif %}
 
     {{ team_form.search_member | as_crispy_field }}
@@ -46,20 +47,19 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" id="edit-team-form-button" class="btn btn-primary">
-          {% if request.resolver_match.url_name == 'edit_team' %}
-              Update Team
-          {% else %}
-              Create Team
-          {% endif %}
+            <!-- Changes the text of the button based on the url name -->
+            {% if request.resolver_match.url_name == 'edit_team' %}
+            Update Team
+            {% else %}
+            Create Team
+            {% endif %}
         </button>
     </div>
 </form>
 
-
-
-
 {% block extras %}
 <script>
+  // Update the button text when the search input state changes
   document.getElementById('member-search-input').addEventListener('input', function() {
       var button = document.getElementById('edit-team-form-button');
       if (this.value) {

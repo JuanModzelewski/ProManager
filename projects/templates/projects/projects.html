@@ -2,19 +2,20 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-  <div class="d-flex flex-column align-items-start">
+<div class="project-container">
+  <div class="card-container">
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#primaryModal"
       hx-get="{% url 'create_project' %}" hx-target="#primaryDialog">
       <i class="bi bi-folder-plus"></i>
       Create Project
     </button>
+    <!-- For loop to create a card for each project -->
     {% for project in object_list %}
-    <div class="card mb-3">
+    <div class="card">
       <div class="card-header">
         Created By: {{ project.author }}
       </div>
-      <div class="card-body d-flex flex-row justify-content-between mb-3">
+      <div class="card-body d-flex flex-row flex-wrap justify-content-between">
         <div class="p-2 align-self-start">
           <a href="{% url 'project_overview' project.id %}">
             <h5 class="card-title">{{ project.title }}</h5>
@@ -22,14 +23,15 @@
           <p class="card-text">{{ project.created_on }}</p>
         </div>
         <div class="d-flex flex-column align-self-end">
+          <!-- If the user is the author of the project they can edit or delete the project -->
           {% if user.is_authenticated and project.author == user %}
           <button type="button" class="btn btn-secondary mb-2" data-project_id="{{ project.id }}" data-bs-toggle="modal"
             data-bs-target="#primaryModal" hx-get="{% url 'edit_project' project.id %}" hx-target="#primaryDialog">
             <i class="bi bi-pencil-square"></i>
             Edit
           </button>
-          <button type="button" class="delete-project-btn btn btn-danger mb-2"
-            data-project_id="{{ project.id }}" data-project_title="{{ project.title }}">
+          <button type="button" class="delete-project-btn btn btn-danger mb-2" data-project_id="{{ project.id }}"
+            data-project_title="{{ project.title }}">
             <i class="bi bi-trash"></i>
             Delete
           </button>

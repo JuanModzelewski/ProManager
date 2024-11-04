@@ -4,20 +4,38 @@ from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django_htmx.http import HttpResponseClientRefresh
-from .models import Project, ProjectTeam
+from .models import Project
 from .forms import ProjectForm
 
 
-# Create your views here.
 class ProjectView(generic.ListView):
+    """
+    View for displaying a list of projects.
+    **Context:**
+    ``project_list``
+        A list of projects.
+    """
+    model = Project
+    context_object_name = "project_list"
+    queryset = Project.objects.all()
     template_name = "projects/projects.html"
     
     def get_queryset(self):
+        """
+        Filter projects based on the 'filter' GET parameter.
+        Q indicates OR
+        Filter projects based on the user's team.
+        """
         return Project.objects.filter(Q(author=self.request.user) | Q(projectteam__members=self.request.user)).distinct()
     
 
-
 def create_project(request):
+    """
+    View for creating a new project.
+    **Context:**
+    ``project_form``
+        A form for creating a new project.
+    """
     if request.method == "POST":
         project_form = ProjectForm(request.POST)
         if project_form.is_valid() and request.user.is_authenticated:
@@ -32,6 +50,12 @@ def create_project(request):
 
 
 def delete_project(request, project_id):
+    """
+    View for deleting a project.
+    **Context:**
+    ``project``
+        The project that is being deleted.
+    """
     project = get_object_or_404(Project, pk=project_id)
     if project.author == request.user:
         project.delete()
@@ -42,8 +66,13 @@ def delete_project(request, project_id):
         return HttpResponseRedirect(reverse('projects'))
         
   
-
 def edit_project(request, project_id):
+    """
+    View for editing a project.
+    **Context:**
+    ``project_form``
+        A form for editing an existing project.
+    """
     project = get_object_or_404(Project, pk=project_id)
     if project.author == request.user:
         if request.method == "POST":
@@ -61,6 +90,12 @@ def edit_project(request, project_id):
     
     
 def project_overview(request, project_id):
+    """
+    View for displaying an overview of a project.
+    **Context:**
+    ``project``
+        The project that is being displayed.
+    """
     project = get_object_or_404(Project, pk=project_id)
     return render(request, 'projects/project_overview.html', {'project': project})
 

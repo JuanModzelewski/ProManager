@@ -1,19 +1,37 @@
 {% load static %}
 
-<div>
-    <div class="modal-header">
-      <h1 class="modal-title fs-5" id="projectModalLabel">
-        {{ epic.title }}
-      </h1>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div>
-        {{ epic.description | safe }} 
-    </div>
-    <div>
-        <span>Epic Start Date: {{ epic.start_date }} <span>Epic End Date: {{ epic.end_date }}</span></span>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    </div>
+<div class="modal-header">
+  <h1 class="modal-title fs-5" id="projectModalLabel">
+    {{ epic.title }}
+  </h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
+<div class="modal-body">
+  <div>
+    {{ epic.description | safe }}
+  </div>
+  <hr>
+  <div class="col">
+    <p>Epic Start Date: {{ epic.start_date }}</p>
+    <p>Epic End Date: {{ epic.end_date }}</p>
+  </div>
+  <hr>
+  <div class="col">
+    <h5>Epic Tasks</h5>
+    <ul>
+      {% for task in epic.projecttask_set.all %}
+      <li>
+        {{ task.assignee }} |
+        <a href="{% url 'view_project_tasks' project.id %}">{{ task.title }} | {{ task.status }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% if not epic.projecttask_set.all %}
+  <p>This epic has no tasks.</p>
+  {% endif %}
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+</div>
+

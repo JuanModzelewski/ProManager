@@ -4,6 +4,7 @@
 <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>
   <div class="modal-header">
     <h1 class="modal-title fs-5" id="projectModalLabel">
+      <!-- Changes the text of the heading based on the url name -->
       {% if request.resolver_match.url_name == 'edit_project' %}
       Edit Project
       {% else %}
@@ -16,6 +17,7 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     <button type="submit" id="submitButton" class="btn btn-primary">
+      <!-- Changes the text of the button based on the url name -->
       {% if request.resolver_match.url_name == 'edit_project' %}
       Edit Project
       {% else %}

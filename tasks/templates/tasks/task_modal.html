@@ -4,7 +4,8 @@
 <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>
     <div class="modal-header">
         <h1 class="modal-title fs-5" id="projectTaskModalLabel">
-            {% if request.resolver_match.url_name == 'edit_project_task' %}
+            <!-- Changes the text of the heading based on the url name -->
+            {% if request.resolver_match.url_name == 'edit_task' %}
                 Edit Task
             {% else %}
                 Create Task
@@ -12,12 +13,20 @@
         </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-    {{ task_form | crispy }}
-
+    <div class="modal-body">
+        {{ task_form.title | as_crispy_field }}
+        {{ task_form.description | as_crispy_field }}
+        <div class="d-flex flex-row justify-content-between" width="100%">
+            <div class="w-50 me-2">{{ task_form.status | as_crispy_field }}</div>
+            <div class="w-50">{{ task_form.assignee | as_crispy_field }}</div>
+        </div>
+        <div class="w-100">{{ task_form.epic | as_crispy_field }}</div>
+    </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" id="edit-task-form-button" class="btn btn-primary">
-          {% if request.resolver_match.url_name == 'edit_project_task' %}
+        <!-- Changes the text of the button based on the url name -->
+          {% if request.resolver_match.url_name == 'edit_task' %}
               Update Task
           {% else %}
               Create Task

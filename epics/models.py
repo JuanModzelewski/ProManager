@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# Create your models here.
 class ProjectEpic(models.Model):
     """A model representing an epic in a project."""
     project = models.ForeignKey("projects.Project", on_delete=models.CASCADE)

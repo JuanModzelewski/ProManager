@@ -4,23 +4,33 @@
 {% block content %}
 
 <!-- index.html content starts here -->
-<div class="container-fluid">
-    <div class="row">
-        <h2>Home</h2>
-        <h3>Welcome to ProManager</h3>
-        <div>
-            <h4>Collaborate with your team</h4>
-            <p>Collaborate with your team by sharing files. Create and share links. Create and share projects.</p>
-
-            <h4>Manage your projects</h4>
-            <p>Manage your projects by sharing files. Create and share links. Create and share projects.</p>
-
-            <h4>Easy to user and keep track of your projects</h4>
-            <p>Make sure that everyone in your team is on the same page.
-            </p>
-        </div>
+<section class="hero">
+    <div class="hero-content">
+        <h2>Project Management Simplified</h2>
+        <p>Organize, track, and manage your projects efficiently with ProManager.</p> <a href="#signup"
+            class="cta-button">Get Started</a>
     </div>
-</div>
+</section>
+<section id="features" class="features">
+    <h2>Features</h2>
+    <div class="feature-item">
+        <h3>Task Management</h3>
+        <p>Create, assign, and track tasks easily.</p>
+    </div>
+    <div class="feature-item">
+        <h3>Team Collaboration</h3>
+        <p>Collaborate with your team in real-time.</p>
+    </div>
+    <div class="feature-item">
+        <h3>Progress Tracking</h3>
+        <p>Monitor your project's progress with detailed reports.</p>
+    </div>
+</section>
+<section id="about" class="about">
+    <h2>About ProManager</h2>
+    <p>ProManager is designed to help teams manage their projects efficiently. Our platform offers a range of tools to
+        streamline project management tasks and enhance team collaboration.</p>
+</section>
 
 <!-- index.html content ends here -->
 {% endblock %}

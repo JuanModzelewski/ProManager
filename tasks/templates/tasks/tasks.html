@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="project-details">
+    <!-- If the user is the author of the project they can create a task -->
     {% if user.is_authenticated and project.author == user %}
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#primaryModal"
         hx-get="{% url 'create_task' project.id %}" hx-target="#primaryDialog">
@@ -10,6 +11,7 @@
         Create Task
     </button>
     {% endif %}
+    <!-- Form for filtering the tasks by the user's team -->
     <form method="get" class="task-filter">
         <select class="form-select" name="filter">
             <option value="">All Tasks</option>
@@ -20,8 +22,12 @@
     {% if project_tasks or user_tasks %}
     <div class="task-container">
         <div class="col task-column">
-            <h5><i class="bi bi-list-task"></i> Tasks To Do</h5>
-            <div class="accordion mt-4" id="tasksToDo">
+            <h5 class="mb-3"><i class="bi bi-list-task"></i> Tasks To Do</h5>
+            <div class="accordion" id="tasksToDo">
+                <!-- 
+                Tasks To Do
+                For loop gets the tasks with status = todo
+                -->
                 {% for task in project_tasks %}
                 {% if task.status == 'todo'%}
                 <div class="accordion-item" hx-target="this" hx-swap="outerHTML">
@@ -47,6 +53,7 @@
                             <hr>
                             <h5>Assignees:</h5>
                             <em class="ms-2">
+                                <!-- Loop through task assignees and create a string -->
                                 {% for member in task.assignee.members.all %}
                                 {{ member }}
                                 {% if not forloop.last %},
@@ -54,6 +61,10 @@
                                 {% endfor %}
                             </em>
                             <hr>
+                            <!-- 
+                            Buttons for edit and delete task 
+                            If the user is the author of the project they can edit and delete 
+                             -->
                             {% if request.user == project.author %}
                             <div class="d-flex flex-row flex-wrap align-items-center">
                                 <button type="button" class="edit-task-btn btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#taskModal-{{task.id}}" data
@@ -67,6 +78,10 @@
                                 </button>
                             </div>
                             {% endif %}
+                            <!-- 
+                            Form for updating the task status
+                            If the user is a member of the team assigned to the task they can update the status
+                             -->
                             {% if request.user in task.assignee.members.all %}
                             <div>
                                 <form hx-post="{% url 'update_status' project.id task.id %}"
@@ -74,7 +89,7 @@
                                     class="d-flex flex-row flex-wrap align-items-end">
                                     {{ status_form }}
                                     <div>
-                                        <button type="submit" class="btn btn-success mt-3">Update Status</button>
+                                        <button type="submit" class="btn btn-success mt-3 ms-2">Update Status</button>
                                     </div>
                                 </form>
                             </div>
@@ -86,13 +101,13 @@
                     <em>{{ task.assignee }}</em>
                 </div>
                 <hr>
-                <!-- Modal for Handling each task edit form -->
+                <!-- Modal for Handling each tasks edit form -->
                 <div class="modal fade" id="taskModal-{{task.id}}" tabindex="-1" aria-labelledby="taskModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content p-3">
                             <div id="taskDialog-{{task.id}}" class="modal-body" hx-target="this">
-                                <!-- Modal content goes here inserted by HTMX from template project_modal -->
+                                <!-- Modal content goes here, form task_modal.html inserted by HTMX get request -->
                             </div>
                         </div>
                     </div>
@@ -102,20 +117,23 @@
             </div>
         </div>
         <div class="col task-column">
-            <h5><i class="bi bi-play-circle"></i> Tasks In Progress</h5>
-            <div class="accordion mt-4" id="tasksInProgress">
+            <h5 class="mb-3"><i class="bi bi-play-circle"></i> Tasks In Progress</h5>
+            <div class="accordion" id="tasksInProgress">
+                <!-- 
+                Tasks In Progress
+                For loop gets the tasks with status = in_progress
+                -->
                 {% for task in project_tasks %}
-                {% if task.status == 'in_progress' %}
-                <div class="accordion-item">
+                {% if task.status == 'in_progress'%}
+                <div class="accordion-item" hx-target="this" hx-swap="outerHTML">
                     <h2 class="accordion-header">
-                        <button class="tasks-in-progress accordion-button collapsed d-inline-flex" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#collapse-{{task.id}}" aria-expanded="true"
+                        <button class="tasks-in-progress accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse-{{task.id}}" aria-expanded="true"
                             aria-controls="collapse-{{task.title}}">
                             {{ task.title }}
                         </button>
                     </h2>
-                    <div id="collapse-{{task.id}}" class="accordion-collapse collapse"
-                        data-bs-parent="#tasksInProgress">
+                    <div id="collapse-{{task.id}}" class="accordion-collapse collapse" data-bs-parent="#tasksInProgress">
                         <div class="accordion-body">
                             <div class="d-inline-flex">
                                 <h5>Epic</h5>
@@ -130,6 +148,7 @@
                             <hr>
                             <h5>Assignees:</h5>
                             <em class="ms-2">
+                                <!-- Loop through task assignees and create a string -->
                                 {% for member in task.assignee.members.all %}
                                 {{ member }}
                                 {% if not forloop.last %},
@@ -137,6 +156,10 @@
                                 {% endfor %}
                             </em>
                             <hr>
+                            <!-- 
+                            Buttons for edit and delete task 
+                            If the user is the author of the project they can edit and delete 
+                             -->
                             {% if request.user == project.author %}
                             <div class="d-flex flex-row flex-wrap align-items-center">
                                 <button type="button" class="edit-task-btn btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#taskModal-{{task.id}}" data
@@ -150,6 +173,10 @@
                                 </button>
                             </div>
                             {% endif %}
+                            <!-- 
+                            Form for updating the task status
+                            If the user is a member of the team assigned to the task they can update the status
+                             -->
                             {% if request.user in task.assignee.members.all %}
                             <div>
                                 <form hx-post="{% url 'update_status' project.id task.id %}"
@@ -157,7 +184,7 @@
                                     class="d-flex flex-row flex-wrap align-items-end">
                                     {{ status_form }}
                                     <div>
-                                        <button type="submit" class="btn btn-success mt-3">Update Status</button>
+                                        <button type="submit" class="btn btn-success mt-3 ms-2">Update Status</button>
                                     </div>
                                 </form>
                             </div>
@@ -169,13 +196,13 @@
                     <em>{{ task.assignee }}</em>
                 </div>
                 <hr>
-                <!-- Modal for Handling each task edit form -->
+                <!-- Modal for Handling each tasks edit form -->
                 <div class="modal fade" id="taskModal-{{task.id}}" tabindex="-1" aria-labelledby="taskModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content p-3">
                             <div id="taskDialog-{{task.id}}" class="modal-body" hx-target="this">
-                                <!-- Modal content goes here inserted by HTMX from template project_modal -->
+                                <!-- Modal content goes here, form task_modal.html inserted by HTMX get request -->
                             </div>
                         </div>
                     </div>
@@ -186,8 +213,12 @@
             </div>
         </div>
         <div class="col task-column">
-            <h5><i class="bi bi-check-circle"></i> Tasks Completed</h5>
-            <div class="accordion mt-4" id="tasksDone">
+            <h5 class="mb-3"><i class="bi bi-check-circle"></i> Tasks Completed</h5>
+            <div class="accordion" id="tasksDone">
+                <!-- 
+                Tasks Completed
+                For loop gets the tasks with status = done
+                -->
                 {% for task in project_tasks %}
                 {% if task.status == 'done' %}
                 <div class="accordion-item">
@@ -213,6 +244,7 @@
                             <hr>
                             <h5>Assignees:</h5>
                             <em class="ms-2">
+                                <!-- Loop through task assignees and create a string -->
                                 {% for member in task.assignee.members.all %}
                                 {{ member }}
                                 {% if not forloop.last %},
@@ -220,6 +252,10 @@
                                 {% endfor %}
                             </em>
                             <hr>
+                            <!-- 
+                            Buttons for edit and delete task 
+                            If the user is the author of the project they can edit and delete 
+                             -->
                             {% if request.user == project.author %}
                             <div class="d-flex flex-row flex-wrap align-items-center">
                                 <button type="button" class="edit-task-btn btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#taskModal-{{task.id}}" data
@@ -233,6 +269,10 @@
                                 </button>
                             </div>
                             {% endif %}
+                            <!--
+                            Form for updating the task status
+                            If the user is a member of the team assigned to the task they can update the status
+                             -->
                             {% if request.user in task.assignee.members.all %}
                             <div>
                                 <form hx-post="{% url 'update_status' project.id task.id %}"
@@ -240,7 +280,7 @@
                                     class="d-flex flex-row flex-wrap align-items-end">
                                     {{ status_form }}
                                     <div>
-                                        <button type="submit" class="btn btn-success mt-3">Update Status</button>
+                                        <button type="submit" class="btn btn-success mt-3 ms-2">Update Status</button>
                                     </div>
                                 </form>
                             </div>
@@ -252,13 +292,13 @@
                     <em>{{ task.assignee }}</em>
                 </div>
                 <hr>
-                <!-- Modal for Handling each task edit form -->
+                <!-- Modal for Handling each tasks edit form -->
                 <div class="modal fade" id="taskModal-{{task.id}}" tabindex="-1" aria-labelledby="taskModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content p-3">
                             <div id="taskDialog-{{task.id}}" class="modal-body" hx-target="this">
-                                <!-- Modal content goes here inserted by HTMX from template project_modal -->
+                                <!-- Modal content goes here, form task_modal.html inserted by HTMX get request -->
                             </div>
                         </div>
                     </div>
@@ -274,12 +314,6 @@
     </div>
     {% endif %}
 </div>
-
-<script>
-    $('#primaryModal').on('hidden.bs.modal', function (e) {
-        document.getElementById("primaryDialog").innerHTML = "";
-    })
-</script>
 
 
 {% endblock content %}

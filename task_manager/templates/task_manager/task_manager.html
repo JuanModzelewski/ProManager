@@ -1,0 +1,217 @@
+{% extends 'project_manager.html' %}
+{% load static %}
+
+{% block content %}
+<div class="project-details">
+  {% for epic in project_epics.all %}
+  {% if epic.projecttask_set %}
+  <div class="accordion mb-4 epic-accordion" id="taskEpic-{{epic.id}}">
+    <div class="accordion-item">
+      <div class="accordion-header">
+        <div class="epic-accordion-header d-flex flex-row align-items-center">
+          <div data-bs-toggle="collapse" data-bs-target="#collapseEpic-{{epic.id}}" aria-expanded="true"
+            aria-controls="collapseEpic-{{epic.id}}">
+            <i class="bi bi-node-plus fs-2"></i>
+          </div>
+          <table class="table table-borderless table-epic ms-3">
+            <thead class="fs-5 align-middle">
+              <tr>
+                <td data-bs-toggle="collapse" data-bs-target="#collapseEpic-{{epic.id}}" aria-expanded="true"
+                  aria-controls="collapseEpic-{{epic.id}}" class="border-end" width="30%">{{epic.title}}</td>
+                <td data-bs-toggle="collapse" data-bs-target="#collapseEpic-{{epic.id}}" aria-expanded="true"
+                  aria-controls="collapseEpic-{{epic.id}}" class="border-end" width="25%">
+                  <div class="d-flex flex-row flex-wrap align-items-center ms-2">
+                    <em class="fs-6 me-3">Start Date:</em>
+                    {{epic.start_date}}
+                  </div>
+                </td>
+                <td data-bs-toggle="collapse" data-bs-target="#collapseEpic-{{epic.id}}" aria-expanded="true"
+                  aria-controls="collapseEpic-{{epic.id}}" class="border-end" width="25%">
+                  <div class="d-flex flex-row flex-wrap align-items-center ms-2">
+                    <em class="fs-6 me-3">End Date:</em>
+                    {{epic.end_date}}
+                  </div>
+                </td>
+                <td width="5%">
+                  <button type="button" class="btn btn-secondary btn-sm ms-2"
+                    hx-get="{% url 'edit_epic' project.id epic.id %}" hx-target="#primaryDialog" data-bs-toggle="modal"
+                    data-bs-target="#primaryModal">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                </td>
+                <td width="5%">
+                  <button type="button" class="delete-epic-btn btn btn-danger btn-sm" data-epic_id="{{ epic.id }}"
+                    data-epic_title="{{ epic.title }}">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div id="collapseEpic-{{epic.id}}" class="accordion-collapse collapse" data-bs-parent="#taskEpic-{{epic.id}}">
+        <hr>
+        
+        <div class="accordion-body">
+          <table class="table table-hover">
+            <thead>
+              {% if epic.projecttask_set.all %}
+              <th>Task Status</th>
+              <th>Task Title</th>
+              <th class="w-50">Task Description</th>
+              <th>Task Assignee</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              {% else %}
+              <th class="text-bg-secondary rounded">No Tasks Assigned to this Epic</th>
+              {% endif %}
+            </thead>
+            {% for task in epic.projecttask_set.all %}
+            <tbody>
+              <tr>
+                <td>
+                  {% if task.status == 'todo' %}
+                  <span class="badge bg-primary">Todo</span>
+                  {% elif task.status == 'in_progress' %}
+                  <span class="badge bg-warning">In Progress</span>
+                  {% elif task.status == 'done' %}
+                  <span class="badge bg-success">Done</span>
+                  {% endif %}
+                </td>
+                <td>{{task.title}}</td>
+                <td>{{task.description}}</td>
+                <td>
+                  {% if task.assignee %}
+                  <p class="fw-bold mb-1">{{ task.assignee.title }}</p>
+                  {% if task.assignee.members.all %}
+                  <p>{{ task.assignee.members.all|join:" | " }}</p>
+                  {% else %}
+                  <p>Unassigned</p>
+                  {% endif %}
+                  {% endif %}
+                </td>
+                <td>
+                  <button type="button" class="btn btn-secondary btn-sm"
+                    hx-get="{% url 'edit_task' project.id task.id %}" hx-target="#taskDialog-{{task.id}}"
+                    data-bs-toggle="modal" data-bs-target="#taskModal-{{task.id}}">
+                    <i class="bi bi-pencil-square"></i></button>
+                </td>
+                <td><button type="button" class="delete-task-btn btn btn-danger btn-sm align-self-end"
+                  data-project_id="{{ project.id }}" data-task_id="{{ task.id }}"
+                  data-task_title="{{ task.title }}"><i class="bi bi-trash"></i></button></td>
+              </tr>
+            </tbody>
+            <!-- Modal for Handling each tasks edit form -->
+            <div class="modal fade" id="taskModal-{{task.id}}" tabindex="-1" aria-labelledby="taskModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div id="taskDialog-{{task.id}}" class="modal-body" hx-target="this">
+                    <!-- Modal content goes here, form task_modal.html inserted by HTMX get request -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+  <hr>
+  <div>
+    <h6 class="mt-3">Unassigned Tasks</h6>
+    <hr>
+  </div>
+  {% for task in project.projecttask_set.all %}
+  {% if task.epic %}
+  <div></div>
+  {% else %}
+  <div class="accordion-body">
+    <table class="table table-hover">
+      <thead>
+        <th width="10%">Task Status</th>
+        <th width="15%">Task Title</th>
+        <th width="30%">Task Description</th>
+        <th width="15%">Epic</th>
+        <th width="15%">Task Assignee</th>
+        <th width="5%">Edit</th>
+        <th width="5%">Delete</th>
+      </thead>
+      {% for task in project.projecttask_set.all %}
+      {% if not task.epic %}
+      <tbody>
+        <tr>
+          <td>
+            {% if task.status == 'todo' %}
+            <span class="badge bg-primary">Todo</span>
+            {% elif task.status == 'in_progress' %}
+            <span class="badge bg-warning">In Progress</span>
+            {% elif task.status == 'done' %}
+            <span class="badge bg-success">Done</span>
+            {% elif not task.status %}
+            <span class="badge bg-danger">Unknown</span>
+            {% endif %}
+          </td>
+          <td>{{task.title}}</td>
+          <td>{{task.description}}</td>
+          <td>
+            {% if task.epic %}
+            {{task.epic}}
+            {% else %}
+            No Assigned Epic
+            {% endif %}
+          </td>
+          <td>
+            {% if task.assignee %}
+            <p class="fw-bold mb-1">{{ task.assignee.title }}</p>
+            <p>
+              {% if task.assignee.members.all %}
+              {{ task.assignee.members.all|join:", " }}
+              {% else %}
+              No members
+              {% endif %}
+            </p>
+            {% else %}
+            <p>Not Assigned</p>
+            {% endif %}
+          </td>
+          <td>
+            <button type="button" class="btn btn-secondary btn-sm"
+              hx-get="{% url 'edit_task' project.id task.id %}" hx-target="#taskDialog-{{task.id}}"
+              data-bs-toggle="modal" data-bs-target="#taskModal-{{task.id}}">
+              <i class="bi bi-pencil-square"></i></button>
+          </td>
+          <td><button type="button" class="delete-task-btn btn btn-danger btn-sm align-self-end"
+            data-project_id="'{{ project.id }}'" data-task_id="{{ task.id }}"
+            data-task_title="{{ task.title }}"><i class="bi bi-trash"></i></button></td>
+        </tr>
+      </tbody>
+      <!-- Modal for Handling each tasks edit form -->
+      <div class="modal fade" id="taskModal-{{task.id}}" tabindex="-1" aria-labelledby="taskModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content p-3">
+            <div id="taskDialog-{{task.id}}" class="modal-body" hx-target="this">
+              <!-- Modal content goes here, form task_modal.html inserted by HTMX get request -->
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+
+
+
+
+
+{% endblock content %}

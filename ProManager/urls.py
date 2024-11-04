@@ -26,4 +26,5 @@ urlpatterns = [
     path('teams/', include('teams.urls'), name='teams'),
     path('epics/', include('epics.urls'), name='epics'),
     path('tasks/', include('tasks.urls'), name='tasks'),
+    path('task_manager/', include('task_manager.urls'), name='task_manager'),
 ]

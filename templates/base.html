@@ -1,5 +1,4 @@
 {% load static %}
-
 {% url 'home' as home_url %}
 {% url 'projects' as project_url %}
 {% url 'account_login' as login_url %}
@@ -19,13 +18,14 @@
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <!-- Bootstrap Icons CSS -->
@@ -33,12 +33,9 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-
 </head>
 
 <body class="d-flex flex-column h-100 main-bg position-relative">
-    
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
@@ -77,10 +74,11 @@
     <!-- Main Content -->
     <main class="flex-shrink-0">
         <div class="message-notification">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
+            <div class="row justify-content-center">
+                <div class="col-md-6 offset-md-3">
                     {% for message in messages %}
-                    <div class="alert {{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+                    <div class="alert {{ message.tags }} alert-dismissible fade show auto-close-alert" id="msg"
+                        role="alert">
                         {{ message | safe }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
@@ -88,14 +86,7 @@
                 </div>
             </div>
         </div>
-        
-        <div class="login-notification">
-            {% if user.is_authenticated %}
-            <p class="text-end m-3">You are logged in as {{ user }}</p>
-            {% else %}
-            <p class="text-end m-3">You are not logged in</p>
-            {% endif %}
-        </div>
+
         <div>
             {% block sidebar %}
             <!-- Side Bar navigation -->
@@ -110,7 +101,7 @@
     <footer class="footer mt-auto py-3 dark-bg">
         <p class="m-0 text-center text-white">
             {% block copyright %}
-                Created by
+            Created by
             {% endblock copyright %}
         </p>
         <p class="m-0 text-center text-white">Follow us: <i class="fab fa-facebook-square ms-3"></i>
@@ -119,12 +110,6 @@
             <i class="fab fa-youtube-square ms-3"></i>
         </p>
     </footer>
-
-    <script>
-        $(".modal").on("hidden.bs.modal", function () {
-            $(this).find("#primaryDialog").html("");
-        });
-    </script>
 
 
     <!-- jQuery -->
@@ -136,13 +121,15 @@
 
 
     <!-- HTMX -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/htmx/2.0.3/htmx.min.js" integrity="sha512-dQu3OKLMpRu85mW24LA1CUZG67BgLPR8Px3mcxmpdyijgl1UpCM1RtJoQP6h8UkufSnaHVRTUx98EQT9fcKohw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/htmx/2.0.3/htmx.min.js"
+        integrity="sha512-dQu3OKLMpRu85mW24LA1CUZG67BgLPR8Px3mcxmpdyijgl1UpCM1RtJoQP6h8UkufSnaHVRTUx98EQT9fcKohw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/htmx-ext-response-targets@2.0.0/response-targets.js"></script>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+        </script>
 
     <!-- Bootstrap Icons JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.js"></script>
@@ -163,7 +150,8 @@
 
 
     <!-- Delete confirmation modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true" hx-target="this">
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true"
+        hx-target="this">
         <div class="modal-dialog" class="modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
@@ -181,7 +169,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Alert Modal -->
     <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
         <div class="modal-dialog" class="modal-sm">
@@ -196,7 +184,8 @@
                     No members have been selected, please select at least one member.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary alert-modal-close" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary alert-modal-close"
+                        data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -206,5 +195,4 @@
     {% endblock %}
 
 </body>
-
 </html>

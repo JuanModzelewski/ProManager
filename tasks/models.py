@@ -9,7 +9,7 @@ TASK_STATUS = [
 
 class ProjectTask(models.Model):
     project = models.ForeignKey('projects.Project', on_delete=models.CASCADE)
-    epic = models.ForeignKey('epics.ProjectEpic', on_delete=models.CASCADE)
+    epic = models.ForeignKey('epics.ProjectEpic', on_delete=models.CASCADE, blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField()

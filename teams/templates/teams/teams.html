@@ -3,19 +3,22 @@
 
 {% block content %}
 <div class="project-details">
+  <!-- If the user is the author of the project they can create a team -->
   <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#primaryModal"
-      hx-get="{% url 'create_team' project.id %}" hx-target="#primaryDialog">
-      <i class="bi bi-person-add"></i>
-      Create Team
-    </button>
+    hx-get="{% url 'create_team' project.id %}" hx-target="#primaryDialog">
+    <i class="bi bi-person-add"></i>
+    Create Team
+  </button>
   <div class="d-flex flex-row flex-wrap align-items-start">
     {% if project_teams %}
+    <!-- For loop to create a card for each team -->
     {% for team in project_teams %}
     <div class="card h-auto m-3 p-3" style="width: 18rem;">
       <div class="card-body">
-          <h5 class="card-title align-self-center mb-0">{{ team.title }}</h5>
+        <h5 class="card-title align-self-center mb-0">{{ team.title }}</h5>
         <hr>
         <ul class="list-group">
+          <!-- For loop to create a list of team members -->
           {% for member in team.members.all %}
           <li class="list-group-item">{{ member }}</li>
           {% endfor %}
@@ -26,8 +29,8 @@
             hx-get="{% url 'edit_team' project.id team.id %}" hx-target="#primaryDialog">
             <i class="bi bi-pencil-square"></i>
           </button>
-          <button type="button" class="delete-team-btn btn btn-danger align-self-end" 
-            data-team_id="{{ team.id }}" data-project_id="{{ project.id }}" data-team_title="{{ team.title }}">
+          <button type="button" class="delete-team-btn btn btn-danger align-self-end" data-team_id="{{ team.id }}"
+            data-project_id="{{ project.id }}" data-team_title="{{ team.title }}">
             <i class="bi bi-trash"></i>
           </button>
         </div>
@@ -39,6 +42,5 @@
     {% endif %}
   </div>
 </div>
-
 {% endblock content %}
 

@@ -2,6 +2,7 @@ const deleteTeamBtn = document.querySelectorAll('.delete-team-btn');
 const deleteProjectBtn = document.querySelectorAll('.delete-project-btn');
 const deleteEpicBtn = document.querySelectorAll('.delete-epic-btn');
 const deleteTaskBtn = document.querySelectorAll('.delete-task-btn');
+const autoCloseAlert = document.querySelectorAll('.auto-close-alert');
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -42,15 +43,12 @@ function initEventListeners() {
         });
     }
 
-    htmx.on("hidden.bs.modal", () => {
-        document.getElementById("primaryDialog").innerHTML = ""
-        console.log("modal hidden");
-      })
+    setTimeout(function () {
+        autoCloseAlert.forEach(function (element) {
+            fadeAndSlide(element);
+        });
+    }, 1750);
 
-
-    deleteSelectedMembers();
-
- 
 }
 
 
@@ -71,7 +69,6 @@ function deleteProject(deleteProjectElement) {
 
 
 function deleteTeam(deleteTeamElement) {
-    let projectId = deleteTeamElement.getAttribute("data-project_id");
     let teamId = deleteTeamElement.getAttribute("data-team_id");
     let teamTitle = deleteTeamElement.getAttribute("data-team_title");
     let deleteTeamModal = new bootstrap.Modal(document.querySelector('#deleteModal'));
@@ -82,7 +79,7 @@ function deleteTeam(deleteTeamElement) {
 
     deleteModalBody.innerHTML = `<p>Are you sure you want to delete <strong>${teamTitle}</strong> from this project?</p><p>This action cannot be undone.</p>`;
     deleteModalLabel.textContent = 'Delete Team?';
-    deleteConfirm.href = `delete_team/${projectId}/${teamId}`;
+    deleteConfirm.href = `delete_team/${teamId}`;
     deleteTeamModal.show();
 }
 
@@ -99,7 +96,11 @@ function deleteEpic(deleteEpicElement) {
 
     deleteModalBody.innerHTML = `<p>Are you sure you want to delete <strong>${epicTitle}</strong> from this project?</p><p>This action cannot be undone.</p>`;
     deleteModalLabel.textContent = 'Delete Epic?';
-    deleteConfirm.href = `delete_epic/${projectId}/${epicId}`;
+    if (projectId === null) {
+        deleteConfirm.href = `delete_epic/${epicId}`;
+    } else {
+        deleteConfirm.href = `${projectId}/delete_epic/${epicId}`;
+    }
     deleteEpicModal.show();
 }
 
@@ -107,8 +108,7 @@ function deleteEpic(deleteEpicElement) {
 function deleteSelectedMembers(event) {
 
     let teamId = event.target.getAttribute("data-team_id");
-    let projectId = event.target.getAttribute("data-project_id");
-
+ 
     let selectedMemberIds = [];
     let checkboxes = document.getElementsByName('member_ids');
     
@@ -142,20 +142,19 @@ function deleteSelectedMembers(event) {
         deleteTeamMembersModal.show();
         deleteModalBody.innerHTML = '<p>Are you sure you want to delete this member?</p><p>This action cannot be undone.</p>';
         deleteModalLabel.textContent = 'Delete Member?';
-        deleteConfirm.href = `delete_member/${projectId}/${teamId}/${selectedMemberIds[0]}`;
+        deleteConfirm.href = `delete_members/${teamId}/${selectedMemberIds.join(',')}`;;
     } else {
         projectTeamsModal.hide();
         deleteTeamMembersModal.show();
         deleteModalBody.innerHTML = '<p>Are you sure you want to delete these members?</p><p>This action cannot be undone.</p>';
         deleteModalLabel.textContent = 'Delete Members?';
-        deleteConfirm.href = `delete_members/${projectId}/${teamId}/${selectedMemberIds.join(',')}`;
+        deleteConfirm.href = `delete_members/${teamId}/${selectedMemberIds.join(',')}`;
 
     }
 }
 
 
 function deleteTask(deleteTaskElement) {
-    let projectId = deleteTaskElement.getAttribute("data-project_id");
     let taskId = deleteTaskElement.getAttribute("data-task_id");
     let taskTitle = deleteTaskElement.getAttribute("data-task_title");
     let deleteTaskModal = new bootstrap.Modal(document.querySelector('#deleteModal'));
@@ -166,13 +165,36 @@ function deleteTask(deleteTaskElement) {
 
     deleteModalBody.innerHTML = `<p>Are you sure you want to delete <strong>${taskTitle}</strong> from this project?</p><p>This action cannot be undone.</p>`;
     deleteModalLabel.textContent = 'Delete Task?';
-    deleteConfirm.href = `delete_task/${projectId}/${taskId}`;
+    deleteConfirm.href = `delete_task/${taskId}`;
     deleteTaskModal.show();
 }
 
 
-function editTask(editTaskElement){
-    let projectId = editTaskElement.getAttribute("data-project_id");
-    let taskId = editTaskElement.getAttribute("data-task_id");
-    editTaskElement.setAttribute("hx-get", `{{ url_for('edit_task') }} ${projectId} ${taskId} }}`);
+function fadeAndSlide(element) {
+    const fadeDuration = 500;
+    const slideDuration = 500;
+
+
+    let opacity = 1;
+    const fadeInterval = setInterval(function () {
+        if (opacity > 0) {
+            opacity -= 0.1;
+            element.style.opacity = opacity;
+        } else {
+            clearInterval(fadeInterval);
+
+            let height = element.offsetHeight;
+            const slideInterval = setInterval(function () {
+                if (height > 0) {
+                    height -= 10;
+                    element.style.height = height + "px";
+                } else {
+                    clearInterval(slideInterval);
+
+                    element.parentNode.removeChild(element);
+                }
+            }, slideDuration / 10);
+        }
+    }, fadeDuration / 10);
 }
+

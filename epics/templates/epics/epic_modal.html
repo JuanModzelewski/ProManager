@@ -4,19 +4,33 @@
 <form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>
     <div class="modal-header">
         <h1 class="modal-title fs-5" id="epicModalLabel">
+            <!-- Changes the text of the heading based on the url name -->
+            {% if request.resolver_match.url_name == 'edit_epic' %}
+            Update Epic
+            {% else %}
             Create Epic
+            {% endif %}
         </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-    {{ epic_form | crispy }}
+
+    <div class="modal-body">
+        {{ epic_form.title | as_crispy_field }}
+        {{ epic_form.description | as_crispy_field }}
+        <div class="d-flex flex-row justify-content-between" width="100%">
+            <div class="w-50 me-2">{{ epic_form.start_date | as_crispy_field }}</div>
+            <div class="w-50">{{ epic_form.end_date | as_crispy_field }}</div>
+        </div>
+    </div>
 
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" id="create-epic-form-button" class="btn btn-primary">
+            <!-- Changes the text of the button based on the url name -->
             {% if request.resolver_match.url_name == 'edit_epic' %}
-                Update Epic
+            Update Epic
             {% else %}
-                Create Epic
+            Create Epic
             {% endif %}
         </button>
     </div>

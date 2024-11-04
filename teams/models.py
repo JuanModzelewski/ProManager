@@ -8,10 +8,11 @@ class ProjectTeam(models.Model):
     title = models.CharField(max_length=100)
     members = models.ManyToManyField(User, related_name='team_members')
 
-    
     def __str__(self):
-        member_names = ", ".join([member.username for member in self.members.all()])
+        member_names = ", ".join(
+            [member.username for member in self.members.all()]
+            )
         return f"{self.title} | Members: {member_names}"
-    
+
     def is_user_member(self, user):
         return user in self.members.all()

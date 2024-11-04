@@ -4,18 +4,29 @@ from epics.models import ProjectEpic
 from teams.models import ProjectTeam
 
 
-
 class ProjectTaskForm(forms.ModelForm):
     class Meta:
         model = ProjectTask
         fields = ['title', 'description', 'status', 'assignee', 'epic']
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 8, 'style': 'height: 200px;', 'class': 'form-control'}),
-            'status': forms.Select(attrs={'class': 'form-select form-control', 'style': 'width: 100%;'}),
-            'assignee': forms.Select(attrs={'class': 'form-select form-control', 'style': 'width: 100%;'}),
-            'epic': forms.Select(attrs={'class': 'form-select form-control', 'style': 'width: 100%;'}),
+            'description': forms.Textarea(attrs={
+                'rows': 8,
+                'style': 'height: 200px;',
+                'class': 'form-control'
+                }),
+            'status': forms.Select(attrs={
+                'class': 'form-select form-control',
+                'style': 'width: 100%;'
+                }),
+            'assignee': forms.Select(attrs={
+                'class': 'form-select form-control',
+                'style': 'width: 100%;'
+                }),
+            'epic': forms.Select(attrs={
+                'class': 'form-select form-control',
+                'style': 'width: 100%;'
+                }),
         }
-        
 
     def __init__(self, *args, **kwargs):
         """
@@ -27,19 +38,22 @@ class ProjectTaskForm(forms.ModelForm):
         project = kwargs.pop('project', None)
         super().__init__(*args, **kwargs)
         if project:
-            self.fields['epic'].queryset = ProjectEpic.objects.filter(project=project)
-            self.fields['assignee'].queryset = ProjectTeam.objects.filter(project=project)
-            self.fields['assignee'].label_from_instance = self.assignee_label
-        
+            self.fields['epic'].queryset = \
+                ProjectEpic.objects.filter(project=project)
+            self.fields['assignee'].queryset = \
+                ProjectTeam.objects.filter(project=project)
+            self.fields['assignee'].label_from_instance = \
+                self.assignee_label
 
     def assignee_label(self, obj):
         """
         Return a string representation of the task assignee.
         Used in the label_from_instance method.
         """
-        member_names = ", ".join([member.username for member in obj.members.all()])
+        member_names = ", ".join(
+            [member.username for member in obj.members.all()])
         return f"{obj.title} | Members: {member_names}"
-    
+
 
 class TaskStatusForm(forms.ModelForm):
     class Meta:
@@ -56,4 +70,3 @@ class TaskStatusForm(forms.ModelForm):
                 'style': 'width: 200px;',
             }),
         }
-

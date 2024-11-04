@@ -2,16 +2,15 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django_htmx.http import HttpResponseClientRefresh
 from epics.models import ProjectEpic
 from tasks.models import ProjectTask
 from projects.models import Project
 
 
-
 class TaskManager(generic.ListView):
     """
     View for displaying a list of epics belonging to a project.
+
     **Context:**
     ``project``
         The project that the epics are being displayed for.
@@ -29,9 +28,12 @@ class TaskManager(generic.ListView):
         Get a list of epics belonging to the requested project.
         """
         project_id = self.kwargs.get("project_id")
-        self.project = get_object_or_404(Project, pk=project_id)
-        self.epic_tasks = ProjectTask.objects.filter(project=self.project)
-        return ProjectEpic.objects.filter(project=self.project).order_by("start_date")
+        self.project = get_object_or_404(
+            Project, pk=project_id)
+        self.epic_tasks = ProjectTask.objects.filter(
+            project=self.project)
+        return ProjectEpic.objects.filter(
+            project=self.project).order_by("start_date")
 
     def get_context_data(self, **kwargs):
         """
@@ -46,7 +48,7 @@ class TaskManager(generic.ListView):
 def delete_project_task(request, project_id, task_id):
     """
     Delete an existing task for the given project.
-    
+
     **Context:**
     ``project``
         The project that the task is being deleted for.
@@ -57,15 +59,20 @@ def delete_project_task(request, project_id, task_id):
     task = get_object_or_404(ProjectTask, pk=task_id)
     if task.author == request.user:
         task.delete()
-        messages.success(request, f"Task '{task.title}' deleted.")
+        messages.success(request,
+                         f"Task <strong>' {task.title}' \
+                            </strong> has been deleted.")
     else:
-        messages.error(request, f"You are not authorized to delete this task.")
-    return HttpResponseRedirect(reverse("task_manager", args=[project_id]))
+        messages.error(request,
+                       f"You are not authorized to delete this task.")
+    return HttpResponseRedirect(reverse(
+        "task_manager", args=[project_id]))
 
 
 def delete_project_epic(request, project_id, epic_id):
     """
     Delete an existing epic for the given project.
+
     **Context:**
     ``project``
         The project that the epic is being deleted for.
@@ -76,7 +83,11 @@ def delete_project_epic(request, project_id, epic_id):
     epic = get_object_or_404(ProjectEpic, pk=epic_id)
     if project.author == request.user:
         epic.delete()
-        messages.success(request, f"The epic '{epic.title}' has been deleted.")
+        messages.success(request,
+                         f"The epic <strong>' {epic.title}' \
+                            </strong> has been deleted.")
     else:
-        messages.error(request, f"You are not authorized to delete this epic.")
-    return HttpResponseRedirect(reverse('task_manager', args=[project_id]))
+        messages.error(request,
+                       f"You are not authorized to delete this epic.")
+    return HttpResponseRedirect(reverse(
+        'task_manager', args=[project_id]))

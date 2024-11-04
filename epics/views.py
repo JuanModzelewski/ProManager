@@ -12,6 +12,7 @@ from .forms import ProjectEpicForm
 class ProjectEpicsView(generic.ListView):
     """
     View for displaying a list of epics belonging to a project.
+
     **Context:**
     ``project``
         The project that the epics are being displayed for.
@@ -31,7 +32,8 @@ class ProjectEpicsView(generic.ListView):
         project_id = self.kwargs.get("project_id")
         self.project = get_object_or_404(Project, pk=project_id)
         self.epic_tasks = ProjectTask.objects.filter(project=self.project)
-        return ProjectEpic.objects.filter(project=self.project).order_by("start_date")
+        return ProjectEpic.objects.filter(
+            project=self.project).order_by("start_date")
 
     def get_context_data(self, **kwargs):
         """
@@ -46,6 +48,7 @@ class ProjectEpicsView(generic.ListView):
 def create_project_epic(request, project_id):
     """
     Create a new epic for the given project.
+
     **Context:**
     ``project``
         The project that the epic is being created for.
@@ -58,16 +61,23 @@ def create_project_epic(request, project_id):
             epic.author = request.user
             epic.project = project
             epic.save()
-            messages.success(request, f"The epic '{epic.title}' has been created.")
+            messages.success(request,
+                             f"The epic <strong> '{epic.title}' \
+                                </strong> has been created.")
             return HttpResponseClientRefresh()
     else:
         epic_form = ProjectEpicForm()
-    return render(request, "epics/epic_modal.html", {"project": project, "epic_form": epic_form})
+    return render(request,
+                  "epics/epic_modal.html",
+                  {"project": project,
+                   "epic_form": epic_form
+                   })
 
 
 def delete_project_epic(request, project_id, epic_id):
     """
     Delete an existing epic for the given project.
+
     **Context:**
     ``project``
         The project that the epic is being deleted for.
@@ -78,15 +88,21 @@ def delete_project_epic(request, project_id, epic_id):
     epic = get_object_or_404(ProjectEpic, pk=epic_id)
     if project.author == request.user:
         epic.delete()
-        messages.success(request, f"The epic '{epic.title}' has been deleted.")
+        messages.success(request,
+                         f"The epic <strong> '{epic.title}' \
+                            </strong> has been deleted.")
     else:
-        messages.error(request, f"You are not authorized to delete this epic.")
-    return HttpResponseRedirect(reverse('view_project_epics', args=[project_id]))
-    
+        messages.error(request,
+                       f"You are not authorized to delete this epic.")
+    return HttpResponseRedirect(reverse(
+        'view_project_epics',
+        args=[project_id]))
+
 
 def edit_project_epic(request, project_id, epic_id):
     """
     Edit an existing epic for the given project.
+
     **Context:**
     ``project``
         The project that the epic is being updated for.
@@ -101,16 +117,24 @@ def edit_project_epic(request, project_id, epic_id):
         epic_form = ProjectEpicForm(request.POST, instance=epic)
         if epic_form.is_valid():
             epic_form.save()
-            messages.success(request, f"The epic '{epic.title}' has been updated.")
+            messages.success(request,
+                             f"The epic <strong> '{epic.title}' \
+                                </strong> has been updated.")
             return HttpResponseClientRefresh()
     else:
         epic_form = ProjectEpicForm(instance=epic)
-    return render(request, "epics/epic_modal.html", {"project": project, "epic_form": epic_form, "epic": epic})
+    return render(request,
+                  "epics/epic_modal.html",
+                  {"project": project,
+                   "epic_form": epic_form,
+                   "epic": epic
+                   })
 
 
 def view_epic_details(request, project_id, epic_id):
     """
     View the details of an existing epic for the given project.
+
     **Context:**
     ``project``
         The project that the epic is being displayed for.
@@ -119,5 +143,7 @@ def view_epic_details(request, project_id, epic_id):
     """
     project = get_object_or_404(Project, pk=project_id)
     epic = get_object_or_404(ProjectEpic, pk=epic_id)
-    return render(request, "epics/epic_details.html", {"project": project, "epic": epic})
-
+    return render(request,
+                  "epics/epic_details.html",
+                  {"project": project, "epic": epic}
+                  )

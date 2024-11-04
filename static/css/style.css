@@ -21,9 +21,9 @@
     height: 4rem;
     border-bottom: 3px solid #544461;
     box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.15);
-    position: sticky;
-    top: 0;
-    z-index: 2;
+    position: sticky !important;
+    top: 0px;
+    z-index: 10;
 }
 
 .navbar-expanded {

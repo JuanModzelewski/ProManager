@@ -1,0 +1,350 @@
+# ProManager
+
+
+
+Visit the deployed site: [ProManager](https://pro-manager-10b4d100221c.herokuapp.com/)
+
+Description
+
+
+
+## CONTENTS
+
+* [User Experience](#user-experience-ux)
+  * [User Stories](#user-stories)
+
+* [Design](#design)
+  * [Colour Scheme](#colour-scheme)
+  * [Typography](#typography)
+  * [Imagery](#imagery)
+  * [Wireframes](#wireframes)
+  * [Features](#features)
+    * [The Home Page](#the-home-page)
+    * [The Game Page](#the-game-page)
+    * [The High Scores Page](#the-high-scores-page)
+    * [The 404 Error Page](#the-404-error-page)
+    * [Future Implementations](#future-implementations)
+  * [Accessibility](#accessibility)
+
+* [Technologies Used](#technologies-used)
+  * [Languages Used](#languages-used)
+  * [Frameworks, Libraries & Programs Used](#frameworks-libraries--programs-used)
+
+* [Deployment & Local Development](#deployment--local-development)
+  * [Deployment](#deployment)
+  * [Local Development](#local-development)
+    * [How to Fork](#how-to-fork)
+    * [How to Clone](#how-to-clone)
+
+* [Testing](#testing)
+  * [Solved Bugs](#solved-bugs)
+  * [Known Bugs](#known-bugs)
+  
+* [Credits](#credits)
+  * [Code Used](#code-used)
+  * [Content](#content)
+  * [Media](#media)
+  * [Acknowledgments](#acknowledgments)
+
+- - -
+
+## User Experience (UX)
+
+### User Stories
+
+#### Initial User Goals
+
+#### Returning User Goals
+
+#### Frequent User Goals
+
+- - -
+
+## Design
+
+### Color Scheme
+
+
+
+### Typography
+
+### Imagery
+
+### Database ERM
+
+![Database Diagram](documentation\images\erm-diagram.jpg)
+
+### Wire-frames
+
+![Figma Design](documentation/wireframes/homewireframe.webp)
+
+### Project Author Features
+
+* A favicon in the browser tab.
+
+  ![favicon](documentation\images\favicon\pro-manager-favicon-96.png)
+
+#### The Home Page
+
+
+![Home page image](documentation\images\features\promanager-homepage.jpg)
+
+
+![Login](documentation\images\features\promanager-signin.jpg)
+
+
+![SignUp](documentation\images\features\promanager-signup.jpg)
+
+
+#### First Time User Project Creation
+
+
+![Projects Page](documentation\images\features\first-time-user-projects.jpg)
+
+
+![Create Project Modal](documentation\images\features\create-project-modal.jpg)
+
+
+![Project Page after first project creation](documentation\images\features\project-page.jpg)
+
+
+![Edit Project](documentation\images\features\edit-project-modal.jpg)
+
+
+![Delete Project Confirmation](documentation/images/features/delete-project-confirmation.jpg)
+
+#### Project Overview
+
+
+![Project Overview](documentation\images\features\project-overview.jpg)
+
+
+#### Timeline View (Epics)
+
+
+![Timeline View](documentation\images\features\project-time-line.jpg)
+
+
+![Creating An Epic](documentation\images\features\create-epic-modal.jpg)
+
+
+![Editing An Epic](documentation\images\features\edit-epic-modal.jpg)
+
+
+![Deleting Epic Confirmation](documentation\images\features\delete-epic-confirmation.jpg)
+
+
+![Viewing Epics](documentation\images\features\epic-information-modal.jpg)
+
+
+#### Board View (Tasks)
+
+
+![The Board View](documentation\images\features\project-board.jpg)
+
+
+![Creating Tasks](documentation\images\features\create-task-modal.jpg)
+
+
+![Editing Tasks](documentation\images\features\edit-task-modal.jpg)
+
+
+![View Task Information](documentation\images\features\task-accordion-open.jpg)
+
+
+![Delete Task Confirmation](documentation\images\features\delete-task-confirmation.jpg)
+
+
+#### Task Manager
+
+
+![Task Manager View](documentation\images\features\project-task-manager.jpg)
+
+
+![View Tasks Epics](documentation\images\features\create-task-modal.jpg)
+
+
+![Editing Tasks](documentation\images\features\edit-task-modal.jpg)
+
+
+![View Task Information](documentation\images\features\task-manager-accordion-open.jpg)
+
+
+![Unassigned Tasks](documentation\images\features\task-manager-unassigned-tasks.jpg)
+
+
+#### Teams
+
+
+![Teams View](documentation\images\features\project-teams.jpg)
+
+
+![Create a Team](documentation\images\features\create-team-modal.jpg)
+
+
+![User not found Validation](documentation\images\features\user-does-not-exist-validation.jpg)
+
+
+![Editing Teams](documentation\images\features\edit-team-modal.jpg)
+
+
+![Adding Users Validation](documentation\images\features\user-search-validation.jpg)
+
+
+![Delete Confirmation Removing users](documentation\images\features\delete-member-confirmation.jpg)
+
+
+![Delete Team Confirmation](documentation\images\features\delete-team-confirmation.jpg)
+
+
+#### Future Implementations
+
+
+### Accessibility
+
+
+- - -
+
+## Technologies Used
+
+### Languages
+- [Python](https://docs.djangoproject.com/en/5.1/releases/4.2.15/)
+- [JS](https://www.javascript.com/)
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+
+### Frameworks
+- [Django 5.1.2](https://docs.djangoproject.com/en/5.1/releases/5.1.2/)
+
+### Databases
+- [Code Institutes Postgresql](https://www.postgresql.org/)
+
+### 3rd Party Imports
+- [Pip3](https://pypi.org/project/pip/)
+- [allauth](https://docs.allauth.org/en/latest/)
+- [summernote](https://pypi.org/project/django-summernote/)
+- [crispy forms with boostrap 5](https://django-crispy-forms.readthedocs.io/en/latest/)
+- [Gunicorn](https://gunicorn.org/)
+- [whitenoise](https://whitenoise.readthedocs.io/en/stable/django.html)
+- [sqlparse](https://pypi.org/project/sqlparse/) 
+- [Psycopg2](https://pypi.org/project/psycopg2/)
+- [oauthlib](https://oauthlib.readthedocs.io/en/latest/)
+- [PyJWT](https://pyjwt.readthedocs.io/en/latest/)
+- [asgiref](https://pypi.org/project/asgiref/)
+- [dj-database-url](https://pypi.org/project/dj-database-url/)
+- [python3-openid](https://pypi.org/project/python3-openid/)
+- [requests-oauthlib](https://requests-oauthlib.readthedocs.io/en/latest/)
+- [django-htmx](https://pypi.org/project/django-htmx/)
+- [django-filter](https://pypi.org/project/django-filter/)
+
+### Frameworks, Libraries & Programs Used
+
+- [Figma](https://www.figma.com/) Used to create wire-frames.
+- [Visual Studio Code](https://code.visualstudio.com/) Used as my primary IDE
+- [Git](https://git-scm.com/) For version control.
+- [Github](https://github.com/) To save and store the files for the website.
+- [Google Fonts](https://fonts.google.com/) To import the fonts used on the website.
+- [jQuery](https://jquery.com/) A JavaScript library.
+- [HTMX](https://htmx.org/) To perform GET requests
+- [BOOTSTRAP](https://getbootstrap.com/) for styling
+- [Affinity](https://affinity.serif.com/en-gb/) To resize images and convert to webp format.
+- [Am I Responsive?](http://ami.responsivedesign.is/) To show the website image on a range of devices.
+- [dbdiagram.io](https://dbdiagram.io/home/) To Map out the models require to structure the database
+- [PostgrSQL16 Admin](https://shields.io/) To visualize the database structure
+- [Copilot](https://copilot.microsoft.com/) To create fictional use case and dat for testing
+
+- - -
+
+## Testing
+
+Please refer to the [TESTING.md](/TESTING.md) for all test-related documentation.
+
+## Deployment
+
+### Github Deployment
+
+The website was stored using GitHub for storage of data and version control. To do this I did the following;
+
+After each addition, change or removal of code, in the terminal within your IDE type:
+
+- git add .
+- git commit -m "meaningful commit message"
+- git push
+
+The files are now available to view within your github repository.
+
+### Use CI Template
+
+The CI template was cloned [CI Full Template](https://github.com/Code-Institute-Org/ci-full-template)
+
+1. Follow the CI Full template link
+2. On the right side click the button label 'Use this Template*
+3. Select Create New Repository
+4. Add a repository name and choose if you would like it public or private
+5. Click on 'Create Repository'
+6. The new repository is now created
+
+### Github Desktop
+
+Github desktop was used to create a local copy of this repository.
+
+1. In the Github Desktop app select 'file'
+2. Select 'clone repository'
+3. Navigate to the Github tab and select the repository you created using the CI Template.
+4. The repository will be loaded to your computer
+    - You will be able to view any changes before you do your next commit.
+
+### Heroku
+Deployment to Heroku was completed using the following steps:
+
+1. Update your requirements.txt file by entering entering the below into the terminal:
+    - Run pip3 freeze > requirements.txt'.
+    - Set debug to 'False' in the project settings
+    - Commit and push the changes to Github.
+2. Log in to Heroku and select New / Create new app.
+    - Create an app name and select your region. 
+    - Click Create App to continue.
+3. Navigate to the Settings tab locate the ConfigVars section.
+    - Click Reveal ConfigVars and add the following information:
+    - KEY = 'DATABASE_URL', VALUE = Copy and paste the contents from the env.py file.
+    - KEY = 'SECRET_KEY', VALUE = Add a confidential key/password set.
+    - Click Add after entering each ConfigVar.
+4. Within Settings, locate Buildpacks section.
+    - Click Add Buildpack and add the following buildpacks:
+    - Add Python and click Add Buildpack.
+5. Go to Deploy tab and complete the deployment details.
+    - Select GitHub as the Deployment Method.
+    - Connect to GitHub and locate your repository and select Connect.
+    - Select either to Automatic Deploy or Manual Deploy your and click Deploy Branch.
+6. Once deployed, select open app to view the deployed project.
+
+- The live link is [ProManager](https://pro-manager-10b4d100221c.herokuapp.com/)
+
+
+- - -
+
+## Testing
+
+Please refer to [TESTING.md](TESTING.md) file for all testing carried out.
+
+### Solved Bugs
+
+
+### Known Bugs
+
+
+- - -
+
+## Credits
+
+### Code Used
+
+
+### Content
+
+
+### Media
+
+
+### Acknowledgments
+

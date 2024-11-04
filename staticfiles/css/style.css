@@ -257,7 +257,7 @@
 
 /* The Homepage */
 .cover {
-    background: url('/static/images/homepage-background.jpg') no-repeat center center/cover;
+    background: url('/static/images/homepage-background.webp') no-repeat center center/cover;
     color: #544461;
     text-align: center;
     height: 500px;

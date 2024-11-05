@@ -139,7 +139,9 @@ teams/form.py
 
 4. Timeline Page
 
-| 1. Selecting Timeline in the Sidebar  |   The timeline button becomes active and the timeline view is opened when you click on the timeline in the sidebar  | Pass |
+| Action | Expected Behavior | Result |
+| :---         |     :---:      |          ---: |
+| 1. Selecting Timeline in the Sidebar  |   Clicking on the timeline in the sidebar activates the timeline button and opens the timeline view  | Pass |
 | 2. View Epics in Timeline  |   Epics will be shown as a graph with a table underneath if they are available  | Pass |
 | 3. Creating a Epic  |  Selecting the "Create Epic" button opens a modal, the required form fields are displayed  | Pass |
 | 4. Form Validation  |   All fields are required, if any are not complete, detailed validation errors are shown  | Pass |
@@ -154,7 +156,9 @@ teams/form.py
 
 5. Board Page
 
-| 1. Selecting Board in the Sidebar  |   The board button becomes active and the board view is opened when you click on the board in the sidebar  | Pass |
+| Action | Expected Behavior | Result |
+| :---         |     :---:      |          ---: |
+| 1. Selecting Board in the Sidebar  |   Clicking on the board in the sidebar activates the board button and opens the board view  | Pass |
 | 2. View Task in Board  |  If the project has any tasks, they will be shown as 'To Do', 'In Progress', or 'Complete'  | Pass |
 | 3. Creating a Task  |  Selecting the "Create Task" button opens a modal, the required form fields are displayed  | Pass |
 | 4. Form Validation  |   Title, description and status field are required, if any are not complete, detailed validation errors are shown  | Pass |
@@ -169,6 +173,45 @@ teams/form.py
 | 13. Delete Task  |  When selecting to delete a task, a deletion confirmation modal with the task title in bold appears  | Pass |
 | 14. Alert Message  |  An alert message verifying the deletion's success displays  | Pass |
 | 15. Updated Board  |  The recently deleted task is removed from the board the board  | Pass |
+
+6. Task Manager Page
+
+| Action | Expected Behavior | Result |
+| :---         |     :---:      |          ---: |
+| 1. Selecting Task Manager in the Sidebar  |   Clicking on the task manager in the sidebar activates the task manager button and opens the task manager view  | Pass |
+| 2. View Epics in Task Manager  |  If the project has any epics or tasks, they will be list by epics in a accordion table format  | Pass |
+| 3. Selecting an Epic  |   When you click on an epic, a table with the tasks assigned to it is displayed  | Pass |
+| 4. Edit Epic  |  When you choose 'Edit Epic', a modal with a form is displayed, rendering the epic details into the form   | Pass |
+| 5. Updated Task Manager  |  A message verifying the update is displayed and the updated Epic data is loaded into the table  | Pass |
+| 6. Delete Epic  |  When selecting to delete an epic, a deletion confirmation modal with the epic title in bold appears  | Pass |
+| 7. Alert Message  |  An alert message verifying the deletion's success displays  | Pass |
+| 8. Updated Task Manager  |  The table is updated when the epic is removed  | Pass |
+| 9. Edit Task  |  When you choose 'Edit Task', a modal with a form is displayed, rendering the tasks details into the form   | Pass |
+| 10. Update Task  |  After the modal has closed, a message verifying the update appears if any changes were made   | Pass |
+| 11. Updated Task Manager  |  The updated task information is added to the table  | Pass |
+| 12. Delete Task  |  When selecting to delete a task, a deletion confirmation modal with the task title in bold appears  | Pass |
+| 13. Alert Message  |  An alert message verifying the deletion's success displays  | Pass |
+| 14. Updated Task Manager  |  The table is updated when the task is removed  | Pass |
+
+7. Team Page
+
+| Action | Expected Behavior | Result |
+| :---         |     :---:      |          ---: |
+| 1. Selecting Team in the Sidebar  |   Clicking on the team in the sidebar activates the team button and opens the team view  | Pass |
+| 2. View Teams  |  In the team view, any teams that are part of the project will be shown as cards  | Pass |
+| 3. Creating Team  |   When the "Create Team" button is selected, a modal with the necessary form fields appears  | Pass |
+| 4. Form Validation  |   The title field is necessary. If incomplete, thorough validation faults are displayed  | Pass |
+| 5. Search Users  |  A ',' can be used to split a string of users or to search for a single person  | Pass |
+| 6. Search Validation  |  If the user does not exist detailed validation error is displayed  | Pass |
+| 7. Alert Message  |  When the team is successfully created, a confirmation message appears and the modal is closed  | Pass |
+| 8. Updated Team View  |  The newly created team is added to the view  | Pass |
+| 9. Edit Team  |  When you choose 'Edit Team', a modal with a form is displayed, rendering the teams details into the form   | Pass |
+| 10. Add Users  |  Additional members can be added by searching for users   | Pass |
+| 11. Search Validation  |  Detailed validation errors are shown if the user is already on the team or does not exist  | Pass |
+| 12. Updated Team  |  The updated team is loaded and a notice confirming the upgrade is shown  | Pass |
+| 13. Deleting Members  |  Each member has a checkbox next to them; choose the checkbox and click "delete selected"  | Pass |
+| 14. Delete Validation  |  It is necessary to check at least one member  | Pass |
+| 15. Alert Message  |  An alert message verifying the deletion's success displays  | Pass |
 
 
 

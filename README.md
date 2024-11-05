@@ -1,12 +1,8 @@
+![Home page image](/documentation/features/promanager-homepage.jpg)
+
 # ProManager
 
-
-
 Visit the deployed site: [ProManager](https://pro-manager-10b4d100221c.herokuapp.com/)
-
-Description
-
-
 
 ## CONTENTS
 
@@ -399,15 +395,13 @@ Please refer to [TESTING.md](TESTING.md) file for all testing carried out.
 - - -
 
 ## Credits
-
-### Code Used
-
+### Content
+* ChartJS YouTube tutorials on gannt charts [Chartjs](https://www.youtube.com/watch?v=zAOls0NC8xI&t=106s)
+* Modal forms with Django+HTMX by [Good Code Smell](https://blog.benoitblanchon.fr/django-htmx-modal-form/)
+* [Copilot](https://copilot.microsoft.com/) to create fiction projects to test
+* [Medium](https://medium.com/tag/coding) for always providing useful articles
 
 ### Content
+* Cover image [PixaBay](https://pixabay.com/)
 
-
-### Media
-
-
-### Acknowledgments
 

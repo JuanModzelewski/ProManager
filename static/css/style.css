@@ -4,7 +4,7 @@ body {
 }
 /* navbar */
 .brand {
-    font-family: Exo 2, sans-serif;
+    font-family: "Exo 2", serif;
     font-size: 1.75rem;
     font-weight:500;
     color: #4A4A4F;
@@ -157,6 +157,7 @@ body {
     padding: 0.75rem;
     background-color: #3f5f51;
     color: #eefff8;
+    box-shadow: none !important;
 }
 
 .tasks-done {
@@ -164,6 +165,7 @@ body {
     padding: 0.75rem;
     background-color: #d8ffef;
     color: #00160d;
+    box-shadow: none !important;
 }
 
 .tasks-in-progress:not(.collapsed){
@@ -171,6 +173,7 @@ body {
     padding: 0.75rem;
     background-color: #375566;
     color: #e4f1f9;
+    box-shadow: none !important;
 }
 
 .tasks-in-progress {
@@ -178,6 +181,7 @@ body {
     padding: 0.75rem;
     background-color: #d8f1ff;
     color: #1c2a32;
+    box-shadow: none !important;
 }
 
 .tasks-todo:not(.collapsed){
@@ -185,6 +189,7 @@ body {
     padding: 0.75rem;
     background-color: #544461;
     color: #eae1f1;
+    box-shadow: none !important;
 }
 
 .tasks-todo {
@@ -192,6 +197,7 @@ body {
     padding: 0.75rem;
     background-color: #eae1f1;
     color: #271e2e;
+    box-shadow: none !important;
 }
 
 
@@ -201,6 +207,21 @@ body {
     border-radius: 1rem;
     transition: 0.5s;
     cursor: pointer;
+}
+
+.epic-button {
+    background-color: #ffffff;
+    color: #271e2e;
+    box-shadow: none !important;
+    height: fit-content;
+}
+
+.epic-button:not(.collapsed) {
+    background-color: #ffffff;
+    color: #271e2e;
+    box-shadow: none !important;
+    height: fit-content;
+
 }
 
 .accordion-body {
@@ -214,7 +235,6 @@ body {
 .epic-accordion-header {
     height: fit-content;
 }
-
 
 .epic-tasks {
     list-style-type: none;
@@ -441,6 +461,10 @@ div.content {
     .feature-details-col h2,
     .feature-details-col-alternate h2 {
         text-align: center;
+    }
+
+    .cover {
+        background: url('/static/images/homepage-background-mobile.webp') no-repeat center center/cover;
     }
 
 }

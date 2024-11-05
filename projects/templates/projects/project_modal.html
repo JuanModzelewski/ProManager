@@ -11,12 +11,12 @@
       Create Project
       {% endif %}
     </h1>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close modal"></button>
   </div>
   {{ project_form|crispy }}
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="submit" id="submitButton" class="btn btn-primary">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close modal">Close</button>
+    <button type="submit" id="submitButton" class="btn btn-primary" aria-label="Submit form">
       <!-- Changes the text of the button based on the url name -->
       {% if request.resolver_match.url_name == 'edit_project' %}
       Edit Project

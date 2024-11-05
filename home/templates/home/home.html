@@ -15,9 +15,9 @@
             <h2 class="fs-1">Project Management Simplified</h2>
                 <p class="fs-5 mt-2">Organize, track, and manage your projects efficiently with ProManager.</p>
                 {% if user.is_authenticated %}
-                <a href="{% url 'projects' %}" class="btn btn-primary btn-lg mt-3">Go to Projects</a>
+                <a href="{% url 'projects' %}" class="btn btn-primary btn-lg mt-3" aria-label="Go to Projects">Go to Projects</a>
                 {% else %}
-                <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg mt-3">Get Started</a>
+                <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg mt-3" aria-label="Get Started">Get Started</a>
                 {% endif %}
         </div>
     </div>

@@ -11,7 +11,7 @@
             Create Team
             {% endif %}
         </h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close modal"></button>
     </div>
     
     {{ team_form.title | as_crispy_field }}
@@ -27,13 +27,13 @@
         {% for member in team_form.instance.members.all %}
         <li class="list-group-item d-flex justify-content-between">
             {{ member.username }}
-            <input type="checkbox" name="member_ids" value="{{ member.id }}">
+            <input type="checkbox" name="member_ids" value="{{ member.id }}" aria-label="Select Member">
         </li>
         {% endfor %}
     </ul>
     <div class="d-md-flex justify-content-md-end mt-4 mb-4 me-3">
         <button onclick="deleteSelectedMembers(event)" type="button" class="btn btn-danger"
-            data-team_id="{{ team_form.instance.id }}" data-project_id="{{ project.id }}">
+            data-team_id="{{ team_form.instance.id }}" data-project_id="{{ project.id }}" aria-label="Delete Selected">
             <i class="bi bi-trash"></i> Delete Selected
         </button>
     </div>
@@ -45,8 +45,8 @@
     {{ team_form.search_member | as_crispy_field }}
 
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" id="edit-team-form-button" class="btn btn-primary">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close modal">Close</button>
+        <button type="submit" id="edit-team-form-button" class="btn btn-primary" aria-label="Submit form">
             <!-- Changes the text of the button based on the url name -->
             {% if request.resolver_match.url_name == 'edit_team' %}
             Update Team

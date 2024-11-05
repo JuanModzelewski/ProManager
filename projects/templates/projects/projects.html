@@ -6,7 +6,7 @@
   <div class="card-container">
     {% if object_list %}
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#primaryModal"
-      hx-get="{% url 'create_project' %}" hx-target="#primaryDialog">
+      hx-get="{% url 'create_project' %}" hx-target="#primaryDialog" aria-label="Create New Project">
       <i class="bi bi-folder-plus"></i>
       Create New Project
     </button>
@@ -18,7 +18,7 @@
       </div>
       <div class="card-body d-flex flex-row flex-wrap justify-content-between">
         <div class="p-2 align-self-start">
-          <a href="{% url 'project_overview' project.id %}">
+          <a href="{% url 'project_overview' project.id %}" aria-label="View Project">
             <h5 class="card-title">{{ project.title }}</h5>
           </a>
           <p class="card-text">{{ project.created_on }}</p>
@@ -27,12 +27,12 @@
           <!-- If the user is the author of the project they can edit or delete the project -->
           {% if user.is_authenticated and project.author == user %}
           <button type="button" class="btn btn-secondary mb-2" data-project_id="{{ project.id }}" data-bs-toggle="modal"
-            data-bs-target="#primaryModal" hx-get="{% url 'edit_project' project.id %}" hx-target="#primaryDialog">
+            data-bs-target="#primaryModal" hx-get="{% url 'edit_project' project.id %}" hx-target="#primaryDialog" aria-label="Edit Project">
             <i class="bi bi-pencil-square"></i>
             Edit
           </button>
           <button type="button" class="delete-project-btn btn btn-danger mb-2" data-project_id="{{ project.id }}"
-            data-project_title="{{ project.title }}">
+            data-project_title="{{ project.title }}" aria-label="Delete Project">
             <i class="bi bi-trash"></i>
             Delete
           </button>
@@ -53,7 +53,7 @@
         </div>
         <div class="d-flex flex-column align-self-end">
           <button type="button" class="btn btn-primary mb-2 mt-2" data-project_id="{{ project.id }}" data-bs-toggle="modal"
-            data-bs-target="#primaryModal" hx-get="{% url 'create_project' %}" hx-target="#primaryDialog">
+            data-bs-target="#primaryModal" hx-get="{% url 'create_project' %}" hx-target="#primaryDialog" aria-label="Create Your First Project">
             <i class="bi bi-pencil-square"></i>
             Create Your First Project
           </button>

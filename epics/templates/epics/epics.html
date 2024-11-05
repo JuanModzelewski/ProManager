@@ -5,7 +5,7 @@
 <div class="project-details">
     {% if user.is_authenticated and project.author == user %}
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#primaryModal"
-        hx-get="{% url 'create_epic' project.id %}" hx-target="#primaryDialog">
+        hx-get="{% url 'create_epic' project.id %}" hx-target="#primaryDialog" aria-label="Create Epic">
         <i class="bi bi-plus-circle"></i>
         Create Epic
     </button>
@@ -87,18 +87,20 @@
                     {% if user.is_authenticated and project.author == user %}
                     <td><button type="button" class="btn btn-secondary me-3 btn-sm" data-bs-toggle="modal" data-bs-target="#primaryModal"
                             hx-target="#primaryDialog"
-                            hx-get="{% url 'edit_epic' project.id epic.id %}">
+                            hx-get="{% url 'edit_epic' project.id epic.id %}"
+                            aria-label="Edit Epic"
+                            >
                             <i class="bi bi-pencil-square"></i>
                         </button>
                     </td>
-                    <td><button type="button" class="delete-epic-btn btn btn-danger btn-sm"
+                    <td><button type="button" class="delete-epic-btn btn btn-danger btn-sm" aria-label="Delete Epic"
                             data-epic_id="{{ epic.id }}" data-project_id="{{ project.id }}"
                             data-epic_title="{{ epic.title }}">
                             <i class="bi bi-trash"></i>
                         </button>
                     </td>
                     {% else %}
-                    <td><button type="button" class="btn btn-secondary btn-sm"
+                    <td><button type="button" class="btn btn-secondary btn-sm" aria-label="View Epic Details"
                             hx-get="{% url 'view_epic_details' project.id epic.id %}" hx-target="#primaryDialog" data-bs-target="#primaryModal" data-bs-toggle="modal">
                             <i class="bi bi-search"></i>
                         </button>

@@ -6,7 +6,7 @@
     <!-- If the user is the author of the project they can create a task -->
     {% if user.is_authenticated and project.author == user %}
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#primaryModal"
-        hx-get="{% url 'create_task' project.id %}" hx-target="#primaryDialog">
+        hx-get="{% url 'create_task' project.id %}" hx-target="#primaryDialog" aria-label="Create Task">
         <i class="bi bi-plus-circle"></i>
         Create Task
     </button>
@@ -17,7 +17,7 @@
             <option value="">All Tasks</option>
             <option value="my_team">@Me</option>
         </select>
-        <button class="btn btn-secondary" type="submit">Filter</button>
+        <button class="btn btn-secondary" type="submit" aria-label="Filter">Filter</button>
     </form>
     {% if project_tasks or user_tasks %}
     <div class="task-container">
@@ -33,12 +33,12 @@
                 <div class="accordion-item" hx-target="this" hx-swap="outerHTML">
                     <h2 class="accordion-header">
                         <button class="tasks-todo accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse-{{task.id}}" aria-expanded="true"
+                            data-bs-target="#collapse-{{task.id}}" aria-expanded="false" 
                             aria-controls="collapse-{{task.title}}">
                             {{ task.title }}
                         </button>
                     </h2>
-                    <div id="collapse-{{task.id}}" class="accordion-collapse collapse" data-bs-parent="#tasksToDo">
+                    <div id="collapse-{{task.id}}" class="accordion-collapse collapse" data-bs-parent="#tasksToDo" aria-expanded="true">
                         <div class="accordion-body">
                             <div class="d-inline-flex">
                                 <h5>Epic</h5>
@@ -68,12 +68,12 @@
                             {% if request.user == project.author %}
                             <div class="d-flex flex-row flex-wrap align-items-center">
                                 <button type="button" class="edit-task-btn btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#taskModal-{{task.id}}" data
-                                    hx-get="{% url 'edit_task' project.id task.id %}" hx-target="#taskDialog-{{task.id}}">
+                                    hx-get="{% url 'edit_task' project.id task.id %}" hx-target="#taskDialog-{{task.id}}" aria-label="Edit Task">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
                                 <button type="button" class="delete-task-btn btn btn-danger align-self-end"
                                     data-project_id="'{{ project.id }}'" data-task_id="{{ task.id }}"
-                                    data-task_title="{{ task.title }}">
+                                    data-task_title="{{ task.title }}" aria-label="Delete Task">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </div>
@@ -86,10 +86,10 @@
                             <div>
                                 <form hx-post="{% url 'update_status' project.id task.id %}"
                                     hx-target="#collapse-{{task.id}}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
-                                    class="d-flex flex-row flex-wrap align-items-end">
+                                    class="d-flex flex-row flex-wrap align-items-end" aria-label="Update Task Status Form">
                                     {{ status_form }}
                                     <div>
-                                        <button type="submit" class="btn btn-success mt-3 ms-2">Update Status</button>
+                                        <button type="submit" class="btn btn-success mt-3 ms-2" aria-label="Update Task Status">Update Status</button>
                                     </div>
                                 </form>
                             </div>
@@ -128,12 +128,12 @@
                 <div class="accordion-item" hx-target="this" hx-swap="outerHTML">
                     <h2 class="accordion-header">
                         <button class="tasks-in-progress accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse-{{task.id}}" aria-expanded="true"
+                            data-bs-target="#collapse-{{task.id}}" aria-expanded="false"
                             aria-controls="collapse-{{task.title}}">
                             {{ task.title }}
                         </button>
                     </h2>
-                    <div id="collapse-{{task.id}}" class="accordion-collapse collapse" data-bs-parent="#tasksInProgress">
+                    <div id="collapse-{{task.id}}" class="accordion-collapse collapse" data-bs-parent="#tasksInProgress" aria-expanded="true">
                         <div class="accordion-body">
                             <div class="d-inline-flex">
                                 <h5>Epic</h5>
@@ -163,12 +163,12 @@
                             {% if request.user == project.author %}
                             <div class="d-flex flex-row flex-wrap align-items-center">
                                 <button type="button" class="edit-task-btn btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#taskModal-{{task.id}}" data
-                                    hx-get="{% url 'edit_task' project.id task.id %}" hx-target="#taskDialog-{{task.id}}">
+                                    hx-get="{% url 'edit_task' project.id task.id %}" hx-target="#taskDialog-{{task.id}}" aria-label="Edit Task">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
                                 <button type="button" class="delete-task-btn btn btn-danger align-self-end"
                                     data-project_id="'{{ project.id }}'" data-task_id="{{ task.id }}"
-                                    data-task_title="{{ task.title }}">
+                                    data-task_title="{{ task.title }}" aria-label="Delete Task">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </div>
@@ -181,10 +181,10 @@
                             <div>
                                 <form hx-post="{% url 'update_status' project.id task.id %}"
                                     hx-target="#collapse-{{task.id}}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
-                                    class="d-flex flex-row flex-wrap align-items-end">
+                                    class="d-flex flex-row flex-wrap align-items-end" aria-label="Update Task Status Form">
                                     {{ status_form }}
                                     <div>
-                                        <button type="submit" class="btn btn-success mt-3 ms-2">Update Status</button>
+                                        <button type="submit" class="btn btn-success mt-3 ms-2" aria-label="Update Task Status">Update Status</button>
                                     </div>
                                 </form>
                             </div>
@@ -224,12 +224,12 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="tasks-done accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapse-{{task.id}}" aria-expanded="true"
+                            data-bs-target="#collapse-{{task.id}}" aria-expanded="false"
                             aria-controls="collapse-{{task.title}}">
                             {{ task.title }}
                         </button>
                     </h2>
-                    <div id="collapse-{{task.id}}" class="accordion-collapse collapse" data-bs-parent="#tasksDone">
+                    <div id="collapse-{{task.id}}" class="accordion-collapse collapse" data-bs-parent="#tasksDone" aria-expanded="true">
                         <div class="accordion-body">
                             <div class="d-inline-flex">
                                 <h5>Epic</h5>
@@ -259,12 +259,12 @@
                             {% if request.user == project.author %}
                             <div class="d-flex flex-row flex-wrap align-items-center">
                                 <button type="button" class="edit-task-btn btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#taskModal-{{task.id}}" data
-                                    hx-get="{% url 'edit_task' project.id task.id %}" hx-target="#taskDialog-{{task.id}}">
+                                    hx-get="{% url 'edit_task' project.id task.id %}" hx-target="#taskDialog-{{task.id}}" aria-label="Edit Task">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
                                 <button type="button" class="delete-task-btn btn btn-danger align-self-end"
                                     data-project_id="'{{ project.id }}'" data-task_id="{{ task.id }}"
-                                    data-task_title="{{ task.title }}">
+                                    data-task_title="{{ task.title }}" aria-label="Delete Task">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </div>
@@ -277,10 +277,10 @@
                             <div>
                                 <form hx-post="{% url 'update_status' project.id task.id %}"
                                     hx-target="#collapse-{{task.id}}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
-                                    class="d-flex flex-row flex-wrap align-items-end">
+                                    class="d-flex flex-row flex-wrap align-items-end" aria-label="Update Task Status Form">
                                     {{ status_form }}
                                     <div>
-                                        <button type="submit" class="btn btn-success mt-3 ms-2">Update Status</button>
+                                        <button type="submit" class="btn btn-success mt-3 ms-2" aria-label="Update Task Status">Update Status</button>
                                     </div>
                                 </form>
                             </div>

@@ -9,23 +9,22 @@
     <div class="accordion-item">
       <div class="accordion-header">
         <div class="epic-accordion-header d-flex flex-row align-items-center">
-          <div data-bs-toggle="collapse" data-bs-target="#collapseEpic-{{epic.id}}" aria-expanded="true"
-            aria-controls="collapseEpic-{{epic.id}}">
+          <button class="epic-button accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseEpic-{{epic.id}}" type="button">
             <i class="bi bi-node-plus fs-2"></i>
-          </div>
+          
           <table class="table table-borderless table-epic ms-3">
             <thead class="fs-5 align-middle">
               <tr>
-                <td data-bs-toggle="collapse" data-bs-target="#collapseEpic-{{epic.id}}" aria-expanded="true"
+                <td data-bs-toggle="collapse" data-bs-target="#collapseEpic-{{epic.id}}" aria-expanded="false"
                   aria-controls="collapseEpic-{{epic.id}}" class="border-end" width="30%">{{epic.title}}</td>
-                <td data-bs-toggle="collapse" data-bs-target="#collapseEpic-{{epic.id}}" aria-expanded="true"
+                <td data-bs-toggle="collapse" data-bs-target="#collapseEpic-{{epic.id}}" aria-expanded="false"
                   aria-controls="collapseEpic-{{epic.id}}" class="border-end" width="25%">
                   <div class="d-flex flex-row flex-wrap align-items-center ms-2">
                     <em class="fs-6 me-3">Start Date:</em>
                     {{epic.start_date}}
                   </div>
                 </td>
-                <td data-bs-toggle="collapse" data-bs-target="#collapseEpic-{{epic.id}}" aria-expanded="true"
+                <td data-bs-toggle="collapse" data-bs-target="#collapseEpic-{{epic.id}}" aria-expanded="false"
                   aria-controls="collapseEpic-{{epic.id}}" class="border-end" width="25%">
                   <div class="d-flex flex-row flex-wrap align-items-center ms-2">
                     <em class="fs-6 me-3">End Date:</em>
@@ -35,24 +34,24 @@
                 <td width="5%">
                   <button type="button" class="btn btn-secondary btn-sm ms-2"
                     hx-get="{% url 'edit_epic' project.id epic.id %}" hx-target="#primaryDialog" data-bs-toggle="modal"
-                    data-bs-target="#primaryModal">
+                    data-bs-target="#primaryModal" aria-label="Edit Epic">
                     <i class="bi bi-pencil-square"></i>
                   </button>
                 </td>
                 <td width="5%">
                   <button type="button" class="delete-epic-btn btn btn-danger btn-sm" data-epic_id="{{ epic.id }}"
-                    data-epic_title="{{ epic.title }}">
+                    data-epic_title="{{ epic.title }}" aria-label="Delete Epic">
                     <i class="bi bi-trash"></i>
                   </button>
                 </td>
               </tr>
             </thead>
           </table>
+        </button>
         </div>
       </div>
-      <div id="collapseEpic-{{epic.id}}" class="accordion-collapse collapse" data-bs-parent="#taskEpic-{{epic.id}}">
+      <div id="collapseEpic-{{epic.id}}" class="accordion-collapse collapse" data-bs-parent="#taskEpic-{{epic.id}}" aria-expanded="true">
         <hr>
-        
         <div class="accordion-body">
           <table class="table table-hover">
             <thead>
@@ -94,12 +93,12 @@
                 <td>
                   <button type="button" class="btn btn-secondary btn-sm"
                     hx-get="{% url 'edit_task' project.id task.id %}" hx-target="#taskDialog-{{task.id}}"
-                    data-bs-toggle="modal" data-bs-target="#taskModal-{{task.id}}">
+                    data-bs-toggle="modal" data-bs-target="#taskModal-{{task.id}}" aria-label="Edit Task">
                     <i class="bi bi-pencil-square"></i></button>
                 </td>
                 <td><button type="button" class="delete-task-btn btn btn-danger btn-sm align-self-end"
                   data-project_id="{{ project.id }}" data-task_id="{{ task.id }}"
-                  data-task_title="{{ task.title }}"><i class="bi bi-trash"></i></button></td>
+                  data-task_title="{{ task.title }}"><i class="bi bi-trash" aria-label="Delete Task"></i></button></td>
               </tr>
             </tbody>
             <!-- Modal for Handling each tasks edit form -->
@@ -181,12 +180,12 @@
           <td>
             <button type="button" class="btn btn-secondary btn-sm"
               hx-get="{% url 'edit_task' project.id task.id %}" hx-target="#taskDialog-{{task.id}}"
-              data-bs-toggle="modal" data-bs-target="#taskModal-{{task.id}}">
+              data-bs-toggle="modal" data-bs-target="#taskModal-{{task.id}}" aria-label="Edit Task">
               <i class="bi bi-pencil-square"></i></button>
           </td>
           <td><button type="button" class="delete-task-btn btn btn-danger btn-sm align-self-end"
             data-project_id="'{{ project.id }}'" data-task_id="{{ task.id }}"
-            data-task_title="{{ task.title }}"><i class="bi bi-trash"></i></button></td>
+            data-task_title="{{ task.title }}"><i class="bi bi-trash" aria-label="Delete Task"></i></button></td>
         </tr>
       </tbody>
       <!-- Modal for Handling each tasks edit form -->

@@ -1,3 +1,5 @@
+import bootstrap from 'bootstrap';
+
 const deleteTeamBtn = document.querySelectorAll('.delete-team-btn');
 const deleteProjectBtn = document.querySelectorAll('.delete-project-btn');
 const deleteEpicBtn = document.querySelectorAll('.delete-epic-btn');
@@ -48,6 +50,8 @@ function initEventListeners() {
             fadeAndSlide(element);
         });
     }, 1750);
+
+    deleteSelectedMembers(event);
 
 }
 
@@ -142,7 +146,7 @@ function deleteSelectedMembers(event) {
         deleteTeamMembersModal.show();
         deleteModalBody.innerHTML = '<p>Are you sure you want to delete this member?</p><p>This action cannot be undone.</p>';
         deleteModalLabel.textContent = 'Delete Member?';
-        deleteConfirm.href = `delete_members/${teamId}/${selectedMemberIds.join(',')}`;;
+        deleteConfirm.href = `delete_members/${teamId}/${selectedMemberIds.join(',')}`;
     } else {
         projectTeamsModal.hide();
         deleteTeamMembersModal.show();

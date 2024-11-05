@@ -11,40 +11,17 @@ Description
 ## CONTENTS
 
 * [User Experience](#user-experience-ux)
-  * [User Stories](#user-stories)
 
 * [Design](#design)
-  * [Colour Scheme](#colour-scheme)
-  * [Typography](#typography)
-  * [Imagery](#imagery)
-  * [Wireframes](#wireframes)
-  * [Features](#features)
-    * [The Home Page](#the-home-page)
-    * [The Game Page](#the-game-page)
-    * [The High Scores Page](#the-high-scores-page)
-    * [The 404 Error Page](#the-404-error-page)
-    * [Future Implementations](#future-implementations)
-  * [Accessibility](#accessibility)
 
 * [Technologies Used](#technologies-used)
-  * [Languages Used](#languages-used)
-  * [Frameworks, Libraries & Programs Used](#frameworks-libraries--programs-used)
 
 * [Deployment & Local Development](#deployment--local-development)
-  * [Deployment](#deployment)
-  * [Local Development](#local-development)
-    * [How to Fork](#how-to-fork)
-    * [How to Clone](#how-to-clone)
 
 * [Testing](#testing)
-  * [Solved Bugs](#solved-bugs)
-  * [Known Bugs](#known-bugs)
   
 * [Credits](#credits)
-  * [Code Used](#code-used)
-  * [Content](#content)
-  * [Media](#media)
-  * [Acknowledgments](#acknowledgments)
+
 
 - - -
 
@@ -64,6 +41,11 @@ Description
 
 ### Color Scheme
 
+### Favicon
+
+* A favicon in the browser tab.
+
+  ![favicon](documentation\images\favicon\pro-manager-favicon-96.png)
 
 
 ### Typography
@@ -72,20 +54,15 @@ Description
 
 ### Database ERM
 
-![Database Diagram](documentation\images\erm-diagram.jpg)
+![Database Diagram](documentation\images\features\erd-diagram.jpg)
 
 ### Wire-frames
 
-![Figma Design](documentation/wireframes/homewireframe.webp)
+![Figma Design]()
 
 ### Project Author Features
 
-* A favicon in the browser tab.
-
-  ![favicon](documentation\images\favicon\pro-manager-favicon-96.png)
-
 #### The Home Page
-
 
 ![Home page image](documentation\images\features\promanager-homepage.jpg)
 
@@ -220,7 +197,7 @@ Description
 - [Code Institutes Postgresql](https://www.postgresql.org/)
 
 ### 3rd Party Imports
-- [Pip3](https://pypi.org/project/pip/)
+- [Pip](https://pypi.org/project/pip/)
 - [allauth](https://docs.allauth.org/en/latest/)
 - [summernote](https://pypi.org/project/django-summernote/)
 - [crispy forms with boostrap 5](https://django-crispy-forms.readthedocs.io/en/latest/)
@@ -254,10 +231,6 @@ Description
 - [Copilot](https://copilot.microsoft.com/) To create fictional use case and dat for testing
 
 - - -
-
-## Testing
-
-Please refer to the [TESTING.md](/TESTING.md) for all test-related documentation.
 
 ## Deployment
 

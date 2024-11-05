@@ -65,7 +65,7 @@ ProManager's ultimate mission is to establish a unified atmosphere in which proj
 - User Permissions
     - As a project manager, I want to set different permission levels for users, So that I can control access to sensitive information.
 
-see more ![Project Board](https://github.com/users/JuanModzelewski/projects/3)
+see more [Project Board](https://github.com/users/JuanModzelewski/projects/3)
 
 - - -
 
@@ -85,16 +85,16 @@ see more ![Project Board](https://github.com/users/JuanModzelewski/projects/3)
 
 * A favicon in the browser tab.
 
-  ![favicon](/documentation/favicon/pro-manager-favicon-96.png)
+![favicon](/documentation/favicon/pro-manager-favicon-96.png)
 
 
 ### Typography
 
-- Logo Font Exo 2 ![Google Fonts](https://fonts.google.com/specimen/Exo+2)
+- Logo Font Exo 2 [Google Fonts](https://fonts.google.com/specimen/Exo+2)
 
 ### Imagery
 
-- Hero Image from Pixabay ![Pixabay](https://pixabay.com/)
+- Hero Image from Pixabay [Pixabay](https://pixabay.com/)
 
 ### Database ERM
 
@@ -395,12 +395,6 @@ Deployment to Heroku was completed using the following steps:
 ## Testing
 
 Please refer to [TESTING.md](TESTING.md) file for all testing carried out.
-
-### Solved Bugs
-
-
-### Known Bugs
-
 
 - - -
 

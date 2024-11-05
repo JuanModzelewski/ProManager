@@ -135,10 +135,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
 
     <!-- Modal for creating new project and editing existing project -->
-    <div class="modal fade" id="primaryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="primaryModal" tabindex="-1" aria-labelledby="primaryModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div id="primaryDialog" class="modal-body">
+                <div id="primaryDialog" class="modal-body" hx-target="this">
                     <!-- Modal content goes here inserted by HTMX from template project_modal -->
                 </div>
             </div>
@@ -147,14 +147,15 @@
 
 
     <!-- Delete confirmation modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true"
+        hx-target="this">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title fs-5" id="deleteModalLabel">Delete 'Items'</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close modal"></button>
                 </div>
-                <div id="deleteModalBody" class="modal-body"></div>
+                <div id="deleteModalBody" class="modal-body" hx-target="this"></div>
                 <!-- Delete message received from projects.js -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

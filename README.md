@@ -14,6 +14,12 @@ Description
 
 * [Design](#design)
 
+* [Features](#features)
+
+* [Modifications For Team members](#modifications-for-team-members)
+
+* [Future Implementations](#future-implementations)
+
 * [Technologies Used](#technologies-used)
 
 * [Deployment & Local Development](#deployment--local-development)
@@ -21,7 +27,6 @@ Description
 * [Testing](#testing)
   
 * [Credits](#credits)
-
 
 - - -
 
@@ -60,121 +65,164 @@ Description
 
 ![Figma Design]()
 
-### Features (Project Author Journey)
+## Features
 
-#### The Home Page
+### The Home Page
 
-- A tidy webpage outlining ProManager's capabilities and advantages greets the user.
 ![Home page image](/documentation/features/promanager-homepage.jpg)
 
-- Direct access to the projects through a straightforward login form puts the user one step closer to collaboration and organisation.
+- A tidy webpage outlining ProManager's capabilities and advantages greets the user.
+
 ![Login](/documentation/features/promanager-signin.jpg)
 
-- If registration is necessary, the simple form offers verification and account creation instructions.
+- Direct access to the projects through a straightforward login form puts the user one step closer to collaboration and organisation.
+
 ![SignUp](/documentation/features/promanager-signup.jpg)
 
+- If registration is necessary, the simple form offers verification and account creation instructions.
 
-#### First Time User Project Creation
 
-- The card that appears when a user visits the website for the first time will initiate their first project.
+### First Time User Project Creation
 ![Projects Page](/documentation/features/first-time-user-projects.jpg)
 
-- When starting a new project, a form with easily comprehensible labels guides the user to the necessary information.
+- The card that appears when a user visits the website for the first time will initiate their first project.
+
 ![Create Project Modal](/documentation/features/create-project-modal.jpg)
 
-- Following the creation of a project, a success message is presented to the user along with the ability to amend or delete the project.
+- When starting a new project, a form with easily comprehensible labels guides the user to the necessary information.
+
 ![Project Page after first project creation](/documentation/features/project-page.jpg)
 
-- The edit modal is loaded and the project data is displayed for correction if the project information has to be changed.
+- Following the creation of a project, a success message is presented to the user along with the ability to amend or delete the project.
+
 ![Edit Project](/documentation/features/edit-project-modal.jpg)
 
-- A clear confirmation popup with the project title shown in bold appears when the delete project option is selected.
+- The edit modal is loaded and the project data is displayed for correction if the project information has to be changed.
+
 ![Delete Project Confirmation](/documentation/features/delete-project-confirmation.jpg)
 
-#### Project Overview
+- A clear confirmation popup with the project title shown in bold appears when the delete project option is selected.
 
-- A project overview is shown, along with a description of the project and the option to edit it while in this view.
+
+### Project Overview
 ![Project Overview](/documentation/features/project-overview.jpg)
 
+- A project overview is shown, along with a description of the project and the option to edit it while in this view.
 
-#### Timeline View (Epics)
+
+### Timeline View (Epics)
+![Timeline View](/documentation/features/project-time-line.jpg)
 
 - The allocated epics are shown visually on a timeline in the graph style. A modal enabling the creation of a new epic will appear when the create epic button is selected.
 Viewing epic details, editing epic information, and deleting an epic are all accessible from a table beneath the timeline. 
-![Timeline View](/documentation/features/project-time-line.jpg)
 
-- A form appears in a modal display when the "create epic" button is clicked. The form has a clear labels that list the details needed to create an epic.
 ![Creating An Epic](/documentation/features/create-epic-modal.jpg)
 
-- Users can modify the epic details by using the edit epic button, which opens a modal with the epic information added.
+- A form appears in a modal display when the "create epic" button is clicked. The form has a clear labels that list the details needed to create an epic.
+
 ![Editing An Epic](/documentation/features/edit-epic-modal.jpg)
 
-- The title of the selected epic to be deleted is displayed in the delete epic modal when the delete epic button is selected.
+- Users can modify the epic details by using the edit epic button, which opens a modal with the epic information added.
+
 ![Deleting Epic Confirmation](/documentation/features/delete-epic-confirmation.jpg)
 
-- The epic information and any tasks assigned to the epic are displayed when you click on the epic row or select the view icon(on available to team members).
+- The title of the selected epic to be deleted is displayed in the delete epic modal when the delete epic button is selected.
+
 ![Viewing Epics](/documentation/features/epic-information-modal.jpg)
 
+- The epic information and any tasks assigned to the epic are displayed when you click on the epic row or select the view icon(on available to team members).
 
-#### Board View (Tasks)
 
-- All accessible tasks are listed in the board view for completion and progress. The task overview is well-represented by the board, which has unambiguous labels.
+### Board View (Tasks)
 ![The Board View](/documentation/features/project-board.jpg)
 
-- The task title, the epic to which it belongs, the date of its last update, a description, and the individuals assigned to the task are all displayed using the accordion style display. Additionally, the chosen task can be edited or deleted.
+- All accessible tasks are listed in the board view for completion and progress. The task overview is well-represented by the board, which has unambiguous labels.
+
 ![View Task Information](/documentation/features/task-accordion-open.jpg)
 
-- When you select "create Task," a clearly labelled modal with all the necessary details to create a new task is displayed.
+- The task title, the epic to which it belongs, the date of its last update, a description, and the individuals assigned to the task are all displayed using the accordion style display. Additionally, the chosen task can be edited or deleted.
+
 ![Creating Tasks](/documentation/features/create-task-modal.jpg)
 
-- When you select to edit a task, a modal window with the task's details is displayed.
+- When you select "create Task," a clearly labelled modal with all the necessary details to create a new task is displayed.
+
 ![Editing Tasks](/documentation/features/edit-task-modal.jpg)
 
-- When a task is selected for deletion, a delete confirmation popup with the task title in bold is displayed.
+- When you select to edit a task, a modal window with the task's details is displayed.
+
 ![Delete Task Confirmation](/documentation/features/delete-task-confirmation.jpg)
 
+- When a task is selected for deletion, a delete confirmation popup with the task title in bold is displayed.
 
-#### Task Manager
 
-- All epics and tasks are accessible through the Task Manager and can be edited or deleted. The epics are shown at the top level of the task Manager.
+### Task Manager
 ![Task Manager View](/documentation/features/project-task-manager.jpg)
 
-- When an epic is selected in the task manager, the tasks associated with the epic are displayed, along with the ability to edit and delete them. All task details are present and clearly displayed.
+- All epics and tasks are accessible through the Task Manager and can be edited or deleted. The epics are shown at the top level of the task Manager.
+
 ![View Task Information](/documentation/features/task-manager-accordion-open.jpg)
 
-- Below the list of epics are all the tasks that have not been assigned to an epic.
+- When an epic is selected in the task manager, the tasks associated with the epic are displayed, along with the ability to edit and delete them. All task details are present and clearly displayed.
+
 ![Unassigned Tasks](/documentation/features/task-manager-unassigned-tasks.jpg)
 
+- Below the list of epics are all the tasks that have not been assigned to an epic.
 
-#### Teams
 
-- Any teams that have been made are displayed by selecting teams in the sidebar, along with a button to create a new team.
+### Teams
 ![Teams View](/documentation/features/project-teams.jpg)
 
-- When you choose to create a new team, a modal form with all the necessary details is displayed.
+- Any teams that have been made are displayed by selecting teams in the sidebar, along with a button to create a new team.
+
 ![Create a Team](/documentation/features/create-team-modal.jpg)
 
-- If there is no user, the search user field offers validation.
+- When you choose to create a new team, a modal form with all the necessary details is displayed.
+
 ![User not found Validation](/documentation/features/user-does-not-exist-validation.jpg)
 
-- A modal with the selected team's details and current members appears when you choose to edit a team.
+- If there is no user, the search user field offers validation.
+
 ![Editing Teams](/documentation/features/edit-team-modal.jpg)
 
-- Searching for and trying to add users that are already in the team provides validation.
+- A modal with the selected team's details and current members appears when you choose to edit a team.
+
 ![Adding Users Validation](/documentation/features/user-search-validation.jpg)
 
-- When users a selected via the checkbox and the delete selected members button is clicked a delete confirmation modal is displayed.
+- Searching for and trying to add users that are already in the team provides validation.
+
 ![Delete Confirmation Removing users](/documentation/features/delete-member-confirmation.jpg)
 
-- The team title appears in bold and a delete confirmation window appears when you choose to remove a team.
+- When users a selected via the checkbox and the delete selected members button is clicked a delete confirmation modal is displayed.
+
 ![Delete Team Confirmation](/documentation/features/delete-team-confirmation.jpg)
 
+- The team title appears in bold and a delete confirmation window appears when you choose to remove a team.
+
+- - -
+
+### Modifications For Team members
+
+![Project View Member](/documentation/features/member-project-view.jpg)
+
+- Team members are only able to view the project; they cannot edit or remove it.
+
+![Timeline View Members](/documentation/features/member-timeline-view.jpg)
+
+- Timeline view no longer has edit and delete capabilities; it merely shows the timeline and epic information.
+
+![Board View Tasks @Me](/documentation/features/member-board-filter-@me.jpg)
+
+- Members can filter tasks assigned to them on the board view, but they can also view all tasks to stay updated.
+
+![Member Board Update Staus](/documentation/features/member-board-update-status.jpg)
+
+- Only the team members to whom the task has been assigned have the ability to modify the task's status.
+
+- - -
 
 #### Future Implementations
-
-
-### Accessibility
-
+- Provide the ability for users working on the same project to communicate via the platform, leave comments, and take charge of tasks and epics.
+- Enhance the task manager view so that users may change and personalise the layout settings.
 
 - - -
 
@@ -210,7 +258,7 @@ Viewing epic details, editing epic information, and deleting an epic are all acc
 - [django-htmx](https://pypi.org/project/django-htmx/)
 - [django-filter](https://pypi.org/project/django-filter/)
 
-### Frameworks, Libraries & Programs Used
+### Libraries & Programs Used
 
 - [Figma](https://www.figma.com/) Used to create wire-frames.
 - [Visual Studio Code](https://code.visualstudio.com/) Used as my primary IDE

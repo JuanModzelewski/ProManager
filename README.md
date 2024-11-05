@@ -45,7 +45,7 @@ Description
 
 * A favicon in the browser tab.
 
-  ![favicon](documentation\favicon\pro-manager-favicon-96.png)
+  ![favicon](\documentation\favicon\pro-manager-favicon-96.png)
 
 
 ### Typography
@@ -54,7 +54,7 @@ Description
 
 ### Database ERM
 
-![Database Diagram](documentation\features\erd-diagram.jpg)
+![Database Diagram](\documentation\features\erd-diagram.jpg)
 
 ### Wire-frames
 
@@ -64,114 +64,114 @@ Description
 
 #### The Home Page
 
-![Home page image](documentation\features\promanager-homepage.jpg)
+![Home page image](\documentation\features\promanager-homepage.jpg)
 
 
-![Login](documentation\features\promanager-signin.jpg)
+![Login](\documentation\features\promanager-signin.jpg)
 
 
-![SignUp](documentation\features\promanager-signup.jpg)
+![SignUp](\documentation\features\promanager-signup.jpg)
 
 
 #### First Time User Project Creation
 
 
-![Projects Page](documentation\features\first-time-user-projects.jpg)
+![Projects Page](\documentation\features\first-time-user-projects.jpg)
 
 
-![Create Project Modal](documentation\features\create-project-modal.jpg)
+![Create Project Modal](\documentation\features\create-project-modal.jpg)
 
 
-![Project Page after first project creation](documentation\features\project-page.jpg)
+![Project Page after first project creation](\documentation\features\project-page.jpg)
 
 
-![Edit Project](documentation\features\edit-project-modal.jpg)
+![Edit Project](\documentation\features\edit-project-modal.jpg)
 
 
-![Delete Project Confirmation](documentation/features/delete-project-confirmation.jpg)
+![Delete Project Confirmation](\documentation/features/delete-project-confirmation.jpg)
 
 #### Project Overview
 
 
-![Project Overview](documentation\features\project-overview.jpg)
+![Project Overview](\documentation\features\project-overview.jpg)
 
 
 #### Timeline View (Epics)
 
 
-![Timeline View](documentation\features\project-time-line.jpg)
+![Timeline View](\documentation\features\project-time-line.jpg)
 
 
-![Creating An Epic](documentation\features\create-epic-modal.jpg)
+![Creating An Epic](\documentation\features\create-epic-modal.jpg)
 
 
-![Editing An Epic](documentation\features\edit-epic-modal.jpg)
+![Editing An Epic](\documentation\features\edit-epic-modal.jpg)
 
 
-![Deleting Epic Confirmation](documentation\features\delete-epic-confirmation.jpg)
+![Deleting Epic Confirmation](\documentation\features\delete-epic-confirmation.jpg)
 
 
-![Viewing Epics](documentation\features\epic-information-modal.jpg)
+![Viewing Epics](\documentation\features\epic-information-modal.jpg)
 
 
 #### Board View (Tasks)
 
 
-![The Board View](documentation\features\project-board.jpg)
+![The Board View](\documentation\features\project-board.jpg)
 
 
-![Creating Tasks](documentation\features\create-task-modal.jpg)
+![Creating Tasks](\documentation\features\create-task-modal.jpg)
 
 
-![Editing Tasks](documentation\features\edit-task-modal.jpg)
+![Editing Tasks](\documentation\features\edit-task-modal.jpg)
 
 
-![View Task Information](documentation\features\task-accordion-open.jpg)
+![View Task Information](\documentation\features\task-accordion-open.jpg)
 
 
-![Delete Task Confirmation](documentation\features\delete-task-confirmation.jpg)
+![Delete Task Confirmation](\documentation\features\delete-task-confirmation.jpg)
 
 
 #### Task Manager
 
 
-![Task Manager View](documentation\features\project-task-manager.jpg)
+![Task Manager View](\documentation\features\project-task-manager.jpg)
 
 
-![View Tasks Epics](documentation\features\create-task-modal.jpg)
+![View Tasks Epics](\documentation\features\create-task-modal.jpg)
 
 
-![Editing Tasks](documentation\features\edit-task-modal.jpg)
+![Editing Tasks](\documentation\features\edit-task-modal.jpg)
 
 
-![View Task Information](documentation\features\task-manager-accordion-open.jpg)
+![View Task Information](\documentation\features\task-manager-accordion-open.jpg)
 
 
-![Unassigned Tasks](documentation\features\task-manager-unassigned-tasks.jpg)
+![Unassigned Tasks](\documentation\features\task-manager-unassigned-tasks.jpg)
 
 
 #### Teams
 
 
-![Teams View](documentation\features\project-teams.jpg)
+![Teams View](\documentation\features\project-teams.jpg)
 
 
-![Create a Team](documentation\features\create-team-modal.jpg)
+![Create a Team](\documentation\features\create-team-modal.jpg)
 
 
-![User not found Validation](documentation\features\user-does-not-exist-validation.jpg)
+![User not found Validation](\documentation\features\user-does-not-exist-validation.jpg)
 
 
-![Editing Teams](documentation\features\edit-team-modal.jpg)
+![Editing Teams](\documentation\features\edit-team-modal.jpg)
 
 
-![Adding Users Validation](documentation\features\user-search-validation.jpg)
+![Adding Users Validation](\documentation\features\user-search-validation.jpg)
 
 
-![Delete Confirmation Removing users](documentation\features\delete-member-confirmation.jpg)
+![Delete Confirmation Removing users](\documentation\features\delete-member-confirmation.jpg)
 
 
-![Delete Team Confirmation](documentation\features\delete-team-confirmation.jpg)
+![Delete Team Confirmation](\documentation\features\delete-team-confirmation.jpg)
 
 
 #### Future Implementations

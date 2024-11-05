@@ -32,19 +32,54 @@ Description
 
 ## User Experience (UX)
 
+### User Goals for ProManager
+
+Through an easy-to-use, centralized platform, ProManager users hope to improve team cooperation and expedite their project management procedures. 
+Project managers aim to effectively plan and supervise a variety of projects, delegate work to team members, and track advancement in real time.
+To guarantee timely and successful project completion, they want technologies that offer clear visibility into project milestones, deadlines, and key performance metrics.
+
+Team members seek a smooth method for communicating with coworkers, updating their task statuses, and receiving task assignments.
+
+ProManager's ultimate mission is to establish a unified atmosphere in which project teams may collaborate effectively, boost output, and accomplish project goals.
+
 ### User Stories
+- User Registration
+    - As a new user, I want to create an account on ProManager, So that I can access project management features.
 
-#### Initial User Goals
+- Project Creation
+    - As a project manager, I want to create new projects, So that I can organize and manage various tasks and resources.
 
-#### Returning User Goals
+- Epic Creation
+    - As a project manager, I want to create epics so the all project members are informed about deadlines
 
-#### Frequent User Goals
+- Task Assignment
+    - As a project manager, I want to create tasks that align with Epics
+    - As a project manager, I want to assign tasks to team members, So that everyone knows their responsibilities and deadlines.
+
+- Progress Tracking
+    - As a team member, I want to update the status of my tasks, So that the project manager can track progress and identify potential delays.
+
+- Task Manager
+    - As a project manager, I want to view a dashboard with key project metrics, So that I can quickly assess the overall status and health of the project.
+
+- User Permissions
+    - As a project manager, I want to set different permission levels for users, So that I can control access to sensitive information.
+
+see more ![Project Board](https://github.com/users/JuanModzelewski/projects/3)
 
 - - -
 
 ## Design
 
 ### Color Scheme
+
+- Primary Color <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#544461`
+- Primary CTA Button (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#0d6efd`
+- Secondary Button (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#6c757d`
+- Danger Button (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#dc3545`
+- Badge Done (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#198754`
+- Badge In Progress (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#ffc107`
+- Badge In To do (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#0d6efd`
 
 ### Favicon
 
@@ -55,7 +90,11 @@ Description
 
 ### Typography
 
+- Logo Font Exo 2 ![Google Fonts](https://fonts.google.com/specimen/Exo+2)
+
 ### Imagery
+
+- Hero Image from Pixabay ![Pixabay](https://pixabay.com/)
 
 ### Database ERM
 
@@ -63,7 +102,20 @@ Description
 
 ### Wire-frames
 
-![Figma Design]()
+![Projects View](/documentation/wireframes/wireframe-2.jpg)
+- Projects Page
+
+![Projects Overview](/documentation/wireframes/wireframe-3.jpg)
+- Projects Overview
+
+![Timeline Overview](/documentation/wireframes/wireframe-4.jpg)
+- Timeline
+
+![Board Overview](/documentation/wireframes/wireframe-5.jpg)
+- Board
+
+![Task Manager Overview](/documentation/wireframes/wireframe-6.jpg)
+- Task Manager
 
 ## Features
 
@@ -130,7 +182,7 @@ Viewing epic details, editing epic information, and deleting an epic are all acc
 
 ![Viewing Epics](/documentation/features/epic-information-modal.jpg)
 
-- The epic information and any tasks assigned to the epic are displayed when you click on the epic row or select the view icon(on available to team members).
+- The epic information and any tasks assigned to the epic are displayed when you click on the epic row or select the view icon(only available to team members).
 
 
 ### Board View (Tasks)
@@ -200,7 +252,7 @@ Viewing epic details, editing epic information, and deleting an epic are all acc
 
 - - -
 
-### Modifications For Team members
+## Modifications For Team members
 
 ![Project View Member](/documentation/features/member-project-view.jpg)
 
@@ -220,7 +272,7 @@ Viewing epic details, editing epic information, and deleting an epic are all acc
 
 - - -
 
-#### Future Implementations
+## Future Implementations
 - Provide the ability for users working on the same project to communicate via the platform, leave comments, and take charge of tasks and epics.
 - Enhance the task manager view so that users may change and personalise the layout settings.
 

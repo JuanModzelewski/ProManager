@@ -73,13 +73,13 @@ see more [Project Board](https://github.com/users/JuanModzelewski/projects/3)
 
 ### Color Scheme
 
-- Primary Color <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#544461`
-- Primary CTA Button (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#0d6efd`
-- Secondary Button (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#6c757d`
-- Danger Button (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#dc3545`
-- Badge Done (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#198754`
-- Badge In Progress (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#ffc107`
-- Badge In To do (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#0d6efd`
+- Primary Color <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/544461?style=round'/></a> `#544461`
+- Primary CTA Button (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/0d6efd?style=round'/></a> `#0d6efd`
+- Secondary Button (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/6c757d?style=round'/></a> `#6c757d`
+- Danger Button (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/dc3545?style=round'/></a> `#dc3545`
+- Badge Done (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/198754?style=round'/></a> `#198754`
+- Badge In Progress (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ffc107?style=round'/></a> `#ffc107`
+- Badge In To do (Bootstrap) <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/0d6efd?style=round'/></a> `#0d6efd`
 
 ### Favicon
 

@@ -60,7 +60,7 @@ Description
 
 ![Figma Design]()
 
-### Project Author Journey
+### Features (Project Author Journey)
 
 #### The Home Page
 
@@ -136,43 +136,37 @@ Viewing epic details, editing epic information, and deleting an epic are all acc
 
 #### Task Manager
 
-
+- All epics and tasks are accessible through the Task Manager and can be edited or deleted. The epics are shown at the top level of the task Manager.
 ![Task Manager View](/documentation/features/project-task-manager.jpg)
 
-
-![View Tasks Epics](/documentation/features/create-task-modal.jpg)
-
-
-![Editing Tasks](/documentation/features/edit-task-modal.jpg)
-
-
+- When an epic is selected in the task manager, the tasks associated with the epic are displayed, along with the ability to edit and delete them. All task details are present and clearly displayed.
 ![View Task Information](/documentation/features/task-manager-accordion-open.jpg)
 
-
+- Below the list of epics are all the tasks that have not been assigned to an epic.
 ![Unassigned Tasks](/documentation/features/task-manager-unassigned-tasks.jpg)
 
 
 #### Teams
 
-
+- Any teams that have been made are displayed by selecting teams in the sidebar, along with a button to create a new team.
 ![Teams View](/documentation/features/project-teams.jpg)
 
-
+- When you choose to create a new team, a modal form with all the necessary details is displayed.
 ![Create a Team](/documentation/features/create-team-modal.jpg)
 
-
+- If there is no user, the search user field offers validation.
 ![User not found Validation](/documentation/features/user-does-not-exist-validation.jpg)
 
-
+- A modal with the selected team's details and current members appears when you choose to edit a team.
 ![Editing Teams](/documentation/features/edit-team-modal.jpg)
 
-
+- Searching for and trying to add users that are already in the team provides validation.
 ![Adding Users Validation](/documentation/features/user-search-validation.jpg)
 
-
+- When users a selected via the checkbox and the delete selected members button is clicked a delete confirmation modal is displayed.
 ![Delete Confirmation Removing users](/documentation/features/delete-member-confirmation.jpg)
 
-
+- The team title appears in bold and a delete confirmation window appears when you choose to remove a team.
 ![Delete Team Confirmation](/documentation/features/delete-team-confirmation.jpg)
 
 

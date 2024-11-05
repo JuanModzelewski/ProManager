@@ -21,54 +21,54 @@ I used the Code Institute Python Linter to ensure sure the source code throughou
 Below are the results for each apps model.py, views.py, urls.py and forms.py
 
 #### Projects App
-![Projects Model](\documentation\images\testing\ci-linter\project-model-py.jpg)
+![Projects Model](/documentation/testing/ci-linter/project-model-py.jpg)
 
-![Projects View](\documentation\images\testing\ci-linter\project-views-py.jpg)
+![Projects View](/documentation/testing/ci-linter/project-views-py.jpg)
 
-![Projects Urls](\documentation\images\testing\ci-linter\project-urls-py.jpg)
+![Projects Urls](/documentation/testing/ci-linter/project-urls-py.jpg)
 
-![Projects Forms](\documentation\images\testing\ci-linter\project-forms-py.jpg)
+![Projects Forms](/documentation/testing/ci-linter/project-forms-py.jpg)
 
 #### Epics App
-![Epics Model](\documentation\images\testing\ci-linter\epics-model-py.jpg)
+![Epics Model](/documentation/testing/ci-linter/epics-model-py.jpg)
 
-![Epics View](\documentation\images\testing\ci-linter\epics-views-py.jpg)
+![Epics View](/documentation/testing/ci-linter/epics-views-py.jpg)
 
-![Epics Urls](\documentation\images\testing\ci-linter\epics-urls-py.jpg)
+![Epics Urls](/documentation/testing/ci-linter/epics-urls-py.jpg)
 
-![Epics Forms](\documentation\images\testing\ci-linter\epics-forms-py.jpg)
+![Epics Forms](/documentation/testing/ci-linter/epics-forms-py.jpg)
 
 #### Tasks App
-![Tasks Model](\documentation\images\testing\ci-linter\tasks-model-py.jpg)
+![Tasks Model](/documentation/testing/ci-linter/tasks-model-py.jpg)
 
-![Tasks View](\documentation\images\testing\ci-linter\tasks-views-py.jpg)
+![Tasks View](/documentation/testing/ci-linter/tasks-views-py.jpg)
 
-![Tasks Urls](\documentation\images\testing\ci-linter\tasks-url-py.jpg)
+![Tasks Urls](/documentation/testing/ci-linter/tasks-url-py.jpg)
 
-![Tasks Forms](\documentation\images\testing\ci-linter\tasks-forms-py.jpg)
+![Tasks Forms](/documentation/testing/ci-linter/tasks-forms-py.jpg)
 
 #### Teams App
-![Teams Model](\documentation\images\testing\ci-linter\teams-model-py.jpg)
+![Teams Model](/documentation/testing/ci-linter/teams-model-py.jpg)
 
-![Teams View](\documentation\images\testing\ci-linter\teams-views-py.jpg)
+![Teams View](/documentation/testing/ci-linter/teams-views-py.jpg)
 
-![Teams Urls](\documentation\images\testing\ci-linter\teams-url-py.jpg)
+![Teams Urls](/documentation/testing/ci-linter/teams-url-py.jpg)
 
-![Teams Forms](\documentation\images\testing\ci-linter\teams-forms-py.jpg)
+![Teams Forms](/documentation/testing/ci-linter/teams-forms-py.jpg)
 
 ### HTML Validation
 
-![HTML Validation](\documentation\images\testing\index-html-report-w3.jpg)
+![HTML Validation](/documentation/testing/index-html-report-w3.jpg)
 
 Only the home.html page passed validation; all other pages with Django template language generated errors in addition to the HTMX request used in GET queries. The code continued to function despite all of the suggested error.
 
 ### CSS Validation
 No errors were found when passing it through the validator.
-![W3C CSS Validation Image](\documentation\images\testing\css-w3c-report.jpg)
+![W3C CSS Validation Image](/documentation/testing/css-w3c-report.jpg)
 
 ### JS Validation
 The warnings produced had no effect on the functionality 
-![JSHint Validation Image](\documentation\images\testing\jshint-report.jpg)
+![JSHint Validation Image](/documentation/testing/jshint-report.jpg)
 
 
 
@@ -93,31 +93,31 @@ The warnings produced had no effect on the functionality
 I evaluated my website's usability and performance using the Lighthouse Dev Tools.
 
 ### Lighthouse results (Desktop)
-![Home Page Desktop](\documentation\images\testing\lighthouse\homepage-lighthouse-desktop.jpg)
+![Home Page Desktop](/documentation/testing/lighthouse/homepage-lighthouse-desktop.jpg)
 
-![Projects Page Desktop](\documentation\images\testing\lighthouse\projects-page-lighthouse-desktop.jpg)
+![Projects Page Desktop](/documentation/testing/lighthouse/projects-page-lighthouse-desktop.jpg)
 
-![Project Overview Desktop](\documentation\images\testing\lighthouse\project-overview-lighthouse-desktop.jpg)
+![Project Overview Desktop](/documentation/testing/lighthouse/project-overview-lighthouse-desktop.jpg)
 
-![Timeline View Desktop](\documentation\images\testing\lighthouse\timeline-lighthouse-desktop.jpg)
+![Timeline View Desktop](/documentation/testing/lighthouse/timeline-lighthouse-desktop.jpg)
 
-![Board View Desktop](\documentation\images\testing\lighthouse\board-lighthouse-desktop.jpg)
+![Board View Desktop](/documentation/testing/lighthouse/board-lighthouse-desktop.jpg)
 
-![Task Manager View Desktop](\documentation\images\testing\lighthouse\task-manager-lighthouse-desktop.jpg)
+![Task Manager View Desktop](/documentation/testing/lighthouse/task-manager-lighthouse-desktop.jpg)
 
-![Teams View Desktop](\documentation\images\testing\lighthouse\teams-lighthouse-desktop.jpg)
+![Teams View Desktop](/documentation/testing/lighthouse/teams-lighthouse-desktop.jpg)
 
 ### Lighthouse results (Mobile)
-![Home Page Mobile](\documentation\images\testing\lighthouse\homepage-lighthouse-mobile.jpg)
+![Home Page Mobile](/documentation/testing/lighthouse/homepage-lighthouse-mobile.jpg)
 
-![Projects Page Mobile](\documentation\images\testing\lighthouse\projects-page-lighthouse-mobile.jpg)
+![Projects Page Mobile](/documentation/testing/lighthouse/projects-page-lighthouse-mobile.jpg)
 
-![Project Overview Mobile](\documentation\images\testing\lighthouse\project-overview-lighthouse-mobile.jpg)
+![Project Overview Mobile](/documentation/testing/lighthouse/project-overview-lighthouse-mobile.jpg)
 
-![Timeline View Mobile](\documentation\images\testing\lighthouse\timeline-lighthouse-mobile.jpg)
+![Timeline View Mobile](/documentation/testing/lighthouse/timeline-lighthouse-mobile.jpg)
 
-![Board View Mobile](\documentation\images\testing\lighthouse\board-lighthouse-mobile.jpg)
+![Board View Mobile](/documentation/testing/lighthouse/board-lighthouse-mobile.jpg)
 
-![Task Manager View Mobile](\documentation\images\testing\lighthouse\task-manager-lighthouse-mobile.jpg)
+![Task Manager View Mobile](/documentation/testing/lighthouse/task-manager-lighthouse-mobile.jpg)
 
-![Teams View Mobile](\documentation\images\testing\lighthouse\teams-lighthouse-mobile.jpg)
+![Teams View Mobile](/documentation/testing/lighthouse/teams-lighthouse-mobile.jpg)
